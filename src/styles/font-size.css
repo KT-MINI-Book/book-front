@@ -1,0 +1,54 @@
+/* 전역 폰트 사이즈 */
+/* 사용 예시: font-size: var(--font-body); */
+:root {
+  --font-main-title: 50px; /* 메인-제목 */
+  --font-subtitle: 45px; /* 헤더 / 메인-소제목 */
+  --font-button: 25px; /* 버튼 */
+  --font-body: 22px; /* 내용 */
+  --font-small: 20px; /* 작은내용 (유효성검증 등) */
+}
+
+/* 기본 적용 */
+body {
+  font-size: var(--font-body);
+}
+
+header {
+  font-size: var(--font-subtitle);
+}
+
+h1 {
+  font-size: var(--font-main-title);
+}
+
+h2 {
+  font-size: var(--font-subtitle);
+}
+
+button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  font-size: var(--font-button);
+}
+
+/* 기본값과 다르게 쓸 때 */
+.text-main-title {
+  font-size: var(--font-main-title);
+}
+
+.text-subtitle {
+  font-size: var(--font-subtitle);
+}
+
+.text-button {
+  font-size: var(--font-button);
+}
+
+.text-body {
+  font-size: var(--font-body);
+}
+
+.text-small {
+  font-size: var(--font-small);
+}
