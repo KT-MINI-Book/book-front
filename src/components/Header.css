@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  background-color: var(--bg-header);
+  color: var(--text-white);
+}
+
+.header-title {
+  margin: 0;
+  font-size: var(--font-subtitle);
+  font-weight: 600;
+}
+
+.header--main {
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.header-nav {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.header-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--text-white);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--text-white);
+  cursor: pointer;
+  font-size: var(--font-body);
+}
+
+.header-button-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}

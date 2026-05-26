@@ -2,7 +2,11 @@
 import { useEffect, useState } from "react";
 import { BookList } from "../api/bookApi";
 
-function BookListPage({ onGoRegister, onGoDetail }) {
+import Header from "../components/Header";
+import BookCard from "../components/bookCard/BookCard";
+import "./BookListPage.css";
+
+function BookListPage({ onGoList, onGoRegister, onGoDetail }) {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -15,31 +19,17 @@ function BookListPage({ onGoRegister, onGoDetail }) {
   }, []);
   
   return (
-    <div>
-      {/* 공통 헤더 */}
-      <header>
-        <p>Logo</p>
-        <nav>
-          <span>도서 목록</span>
-          <button type="button" onClick={onGoRegister}>
-            도서 등록
-          </button>
-        </nav>
-      </header>
+    <div className="bookListPage">
+      <Header
+        title="걷기가 서재"
+        onGoList={onGoList}
+        onGoCreate={onGoRegister}
+      />
 
-      <main>
-        {/* 도서 카드 목록 영역 */}
-        <section>
-          <p>도서 카드 목록 영역 (3열 그리드)</p>
-
+      <main className="bookListPage-main">
+        <section className="bookListPage-grid">
           {books.map((book) => (
-            <button
-              key={book.id}
-              type="button"
-              onClick={() => onGoDetail(book.id)}
-            >
-              {book.title}
-            </button>
+            <BookCard key={book.id} book={book} onClick={onGoDetail} />
           ))}
         </section>
       </main>

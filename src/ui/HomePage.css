@@ -1,0 +1,50 @@
+/* 페이지 전체 */
+.homePage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 본문 */
+.homePage-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  text-align: center;
+  padding: 2rem 1.5rem 4rem;
+  gap: 1.25rem;
+}
+
+/* 환영 문구 */
+.homePage-title {
+  margin: 0;
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* 안내 문구 */
+.homePage-desc {
+  margin: 0;
+  color: var(--text-main);
+  font-size: var(--font-body);
+  line-height: 1.5;
+}
+
+/* 버튼 영역 */
+.homePage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+/* 메인 버튼  */
+.homePage-actions .comButton-main {
+  border-radius: 999px;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+}

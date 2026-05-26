@@ -1,0 +1,32 @@
+/* Mossy Hollow — Color Tokens */
+
+:root {
+  /* Validation */
+  --error: #d9822b;
+  --success: #b8d943;
+
+  /* Main */
+  --primary: #636b2f;
+  --secondary: #d4de95;
+
+  /* Text */
+  --text-main: #3d4127;
+  --text-white: #ffffff;
+  --text-placeholder: #bac095;
+
+  /* Background */
+  --bg-page: #fafaf3;
+  --bg-card: #f4f6e8;
+  --bg-input: #ffffff;
+  --bg-header: #3d4127;
+
+  /* Border */
+  --border-main: #bac095;
+  --border-input: #bac095;
+  --border-card: #bac095;
+  --border-image: #bac095;
+
+  /* Badge */
+  --badge-bg: #d4de95;
+  --badge-text: #3d4127;
+}
