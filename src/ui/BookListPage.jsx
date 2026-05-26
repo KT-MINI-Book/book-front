@@ -1,7 +1,9 @@
-// 도서 목록 페이지
+import Header from "../components/Header";
 import BookCard from "../components/bookCard/BookCard";
+import "./BookListPage.css";
 
-function BookListPage({ onGoRegister, onGoDetail }) {
+// 도서 목록 페이지 — 팀 BookCard 연결 (추후 fetch로 sampleBooks 교체)
+function BookListPage({ onGoList, onGoRegister, onGoDetail }) {
   const sampleBooks = [
     {
       id: 1,
@@ -32,36 +34,17 @@ function BookListPage({ onGoRegister, onGoDetail }) {
       coverImageUrl: "",
     },
   ];
+
   return (
-    <div>
-      {/* 공통 헤더 */}
-      <header>
-        <p>Logo</p>
-        <nav>
-          <span>도서 목록</span>
-          <button type="button" onClick={onGoRegister}>
-            도서 등록
-          </button>
-        </nav>
-      </header>
+    <div className="bookListPage">
+      <Header
+        title="걷기가 서재"
+        onGoList={onGoList}
+        onGoCreate={onGoRegister}
+      />
 
-      <main
-        style={{
-          padding: "46px 0",
-
-          backgroundColor: "#f7f6ef",
-        }}
-      >
-        {/* 하드 코딩 되어있습니다 ! */}
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 206px)",
-            gap: "36px 42px",
-            justifyContent: "center",
-            alignItems: "start",
-          }}
-        >
+      <main className="bookListPage-main">
+        <section className="bookListPage-grid">
           {sampleBooks.map((book) => (
             <BookCard key={book.id} book={book} onClick={onGoDetail} />
           ))}

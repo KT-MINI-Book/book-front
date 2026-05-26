@@ -42,7 +42,11 @@ function App() {
 
   if (currentView === "list") {
     return (
-      <BookListPage onGoRegister={goRegister} onGoDetail={goDetail} />
+      <BookListPage
+        onGoList={goList}
+        onGoRegister={goRegister}
+        onGoDetail={goDetail}
+      />
     );
   }
 
