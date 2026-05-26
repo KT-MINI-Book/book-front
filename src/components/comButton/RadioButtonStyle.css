@@ -1,0 +1,51 @@
+.quality-radio {
+  display: flex;
+  align-items: center;
+  gap: 52px;
+}
+
+.quality-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.quality-radio-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  appearance: none;
+}
+
+.quality-radio-custom {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.quality-radio-input:checked + .quality-radio-custom::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--bg-header);
+}
+
+.quality-radio-text {
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}

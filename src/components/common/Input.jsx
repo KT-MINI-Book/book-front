@@ -2,11 +2,12 @@ import "./InputStyle.css";
 
 function Input({
   label,
-  variant = "small",
   name,
   value,
   onChange,
   placeholder,
+  variant = "small",
+  type = "text",
 }) {
   return (
     <div className="input-box">
@@ -23,6 +24,7 @@ function Input({
       ) : (
         <input
           className="input-field input-small"
+          type={type}
           name={name}
           value={value}
           onChange={onChange}

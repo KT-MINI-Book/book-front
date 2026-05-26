@@ -1,10 +1,18 @@
-import React from 'react';
+import Input from "../../common/Input";
+import MainButton from "../../comButton/MainButton";
+import "./BookFormStyle.css";
 
-function BookForm({ isCreate, bookId, bookData, setBookData, onSave, onDelete }) {
-  
-
+function BookForm({
+  isCreate,
+  bookId,
+  bookData,
+  setBookData,
+  onSave,
+  onDelete,
+}) {
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setBookData((prev) => ({
       ...prev,
       [name]: value,
@@ -13,66 +21,63 @@ function BookForm({ isCreate, bookId, bookData, setBookData, onSave, onDelete })
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!bookData.title.trim() || !bookData.author.trim() || !bookData.content.trim()) {
-      alert('책 제목, 저자, 내용을 모두 입력해 주세요!');
+
+    if (
+      !bookData.title.trim() ||
+      !bookData.author.trim() ||
+      !bookData.content.trim()
+    ) {
+      alert("책 제목, 저자, 내용을 모두 입력해주세요.");
       return;
     }
+
     onSave();
   };
 
   return (
-    <div className="form-box">
-      <h2 className="form-title">
-        {isCreate ? "새 도서를 등록해주세요 !" : "도서 정보를 수정해주세요 !"}
+    <div className="book-form">
+      <h2 className="book-form-title">
+        {isCreate ? "새 도서를 등록해주세요 !" : "도서를 수정해주세요 !"}
       </h2>
-      {!isCreate && <p className="book-id-text">기존 도서 ID: {bookId}</p>}
 
-      <form onSubmit={handleSubmit} className="input-group">
-        <div className="input-field">
-          <label>책 제목</label>
-          <input 
-            type="text" 
-            name="title"
-            value={bookData.title}
-            onChange={handleChange}
-            placeholder="책의 제목을 입력해주세요." 
-            required 
-          />
-        </div>
+      {!isCreate && <p className="book-form-id">기존 도서 ID: {bookId}</p>}
 
-        <div className="input-field">
-          <label>저자</label>
-          <input 
-            type="text" 
-            name="author"
-            value={bookData.author}
-            onChange={handleChange}
-            placeholder="책의 저자를 입력해주세요." 
-            required 
-          />
-        </div>
+      <form className="book-form-body" onSubmit={handleSubmit}>
+        <Input
+          label="책 제목:"
+          name="title"
+          value={bookData.title}
+          onChange={handleChange}
+          placeholder="여러분의 책 제목을 입력해주세요."
+        />
 
-        <div className="input-field">
-          <label>내용</label>
-          <textarea 
-            name="content"
-            value={bookData.content}
-            onChange={handleChange}
-            placeholder="책의 내용을 입력해주세요." 
-            rows="6" 
-            required 
-          />
-        </div>
+        <Input
+          label="저자:"
+          name="author"
+          value={bookData.author}
+          onChange={handleChange}
+          placeholder="여러분의 저자를 입력해주세요."
+        />
 
-        <div className="button-area">
+        <Input
+          label="내용:"
+          name="content"
+          variant="large"
+          value={bookData.content}
+          onChange={handleChange}
+          placeholder="여러분의 책 내용을 입력해주세요."
+        />
+
+        <div className="book-form-actions">
           {!isCreate && (
-            <button type="button" className="sub-btn delete" onClick={onDelete}>
+            <MainButton type="button" onClick={onDelete}>
               도서 삭제
-            </button>
+            </MainButton>
           )}
-          <button type="submit" className="submit-btn">
+
+          <MainButton type="submit">
             {isCreate ? "도서 등록" : "도서 수정"}
-          </button>
+          </MainButton>
         </div>
       </form>
     </div>
