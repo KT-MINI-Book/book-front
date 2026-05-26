@@ -1,0 +1,47 @@
+@import "../../styles/comSt.css";
+
+.input-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: var(--font-small);
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.input-field {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1.5px solid var(--border-input);
+  border-radius: 10px;
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  font-size: var(--font-body);
+  font-weight: 600;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: var(--text-placeholder);
+  font-weight: 600;
+}
+
+.input-field:focus {
+  border-color: var(--success);
+}
+
+.input-small {
+  height: 46px;
+  padding: 0 16px;
+}
+
+.input-large {
+  height: 210px;
+  padding: 16px;
+  resize: none;
+  line-height: 1.5;
+}
