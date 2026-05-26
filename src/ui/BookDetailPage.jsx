@@ -1,82 +1,108 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
-import Input from "../components/common/Input";
-import RadioButton from "../components/RadioButton";
-import MainButton from "../components/comButton/MainButton";
-import BookImage from "../components/bookCard/BookImage";
+import BookForm from "../components/Form/Book/BookForm";
+import ImageForm from "../components/Form/AiImage/ImageForm";
+import { BookCreate, BookDetail, BookUpdate, BookDelete } from "../api/bookApi";
 import "./BookDetailPage.css";
 
-// 목록 하드코딩과 맞춘 예시 (추후 GET /books/:id)
-const SAMPLE_BOOKS = {
-  1: {
-    title: "제목어쩌구",
-    author: "예제 저자",
-    content:
-      "프론트엔드에서 도서 목록을 조회하고, 카드로 출력하며, 상세 페이지로 이동을 실습하기 위한 예제 데이터입니다.",
-    coverImageUrl: "",
-  },
-  2: {
-    title: "제목어쩌구",
-    author: "예제 저자",
-    content:
-      "와 React Router를 활용하여 여러 페이지로 구성된 도서 관리 애플리케이션을 구현하는 예제입니다.",
-    coverImageUrl: "",
-  },
-  3: {
-    title: "제목어쩌구",
-    author: "예제 저자",
-    content:
-      "에이블스쿨 기의 수강생이 이전의 과정에서 실습자료를 혼합한 상록수의 내용을 표지에 담고 있어요.",
-    coverImageUrl: "",
-  },
-  4: {
-    title: "셜록홈즈",
-    author: "아서 코난 도일",
-    content:
-      "괴짜 탐정 셜록 홈즈와 왓슨 박사가 런던의 사건들을 논리적 추리로 해결하는 추리 소설입니다.",
-    coverImageUrl: "",
-  },
+const INITIAL_BOOK_DATA = {
+  title: "",
+  author: "",
+  content: "",
+  coverImageUrl: "",
 };
 
-// 도서 등록·수정 페이지 — Input / RadioButton / MainButton 연결
 function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
   const isCreate = mode === "create";
 
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
-  const [apiKey, setApiKey] = useState("");
-  const [selectedQuality, setSelectedQuality] = useState("high");
-  const [apiKeyError, setApiKeyError] = useState("");
-  const [coverPreview, setCoverPreview] = useState("");
+  const [bookData, setBookData] = useState(INITIAL_BOOK_DATA);
+  const [pageLoading, setPageLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (isCreate || !bookId) {
+      setBookData(INITIAL_BOOK_DATA);
       return;
     }
 
-    const book = SAMPLE_BOOKS[bookId];
-    if (!book) {
-      return;
-    }
+    const fetchBookDetail = async () => {
+      try {
+        setPageLoading(true);
+        setErrorMessage("");
 
-    setTitle(book.title);
-    setAuthor(book.author);
-    setContent(book.content);
-    setCoverPreview(book.coverImageUrl || "");
+        const data = await BookDetail(bookId);
+
+        if (!data) {
+          setErrorMessage("도서 정보를 불러오지 못했습니다.");
+          return;
+        }
+
+        setBookData({
+          title: data.title || "",
+          author: data.author || "",
+          content: data.content || "",
+          coverImageUrl: data.coverImageUrl || "",
+        });
+      } catch (error) {
+        console.error(error);
+        setErrorMessage("도서 상세 정보를 불러오는 중 오류가 발생했습니다.");
+      } finally {
+        setPageLoading(false);
+      }
+    };
+
+    fetchBookDetail();
   }, [isCreate, bookId]);
 
-  const handleSubmit = () => {
-    // 추후 POST /books 또는 PATCH /books/:id
-  };
+  const handleSave = async () => {
+    const now = new Date().toISOString();
 
-  const handleGenerateImage = () => {
-    if (!apiKey.trim()) {
-      setApiKeyError("유효하지 않은 API Key입니다!");
+    if (isCreate) {
+      const createdBook = await BookCreate({
+        ...bookData,
+        createdAt: now,
+        updatedAt: now,
+      });
+
+      if (!createdBook) {
+        setErrorMessage("도서 등록에 실패했습니다.");
+        return;
+      }
+
+      alert("도서가 등록되었습니다.");
+      onGoList();
       return;
     }
-    setApiKeyError("");
-    // 추후 OpenAI 이미지 생성
+
+    const updatedBook = await BookUpdate(bookId, {
+      ...bookData,
+      updatedAt: now,
+    });
+
+    if (!updatedBook) {
+      setErrorMessage("도서 수정에 실패했습니다.");
+      return;
+    }
+
+    alert("도서가 수정되었습니다.");
+    onGoList();
+  };
+
+  const handleDelete = async () => {
+    if (isCreate || !bookId) return;
+
+    const confirmed = window.confirm("정말 이 도서를 삭제하시겠습니까?");
+    if (!confirmed) return;
+
+    const success = await BookDelete(bookId);
+
+    if (!success) {
+      setErrorMessage("도서 삭제에 실패했습니다.");
+      return;
+    }
+
+    alert("도서가 삭제되었습니다.");
+    onGoList();
   };
 
   return (
@@ -88,86 +114,62 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
       />
 
       <main className="bookDetailPage-main">
-        {/* 좌측: 도서 정보 */}
-        <section className="bookDetailPage-column">
-          <h2 className="bookDetailPage-heading">
-            {isCreate ? "새 도서를 등록해주세요 !" : "도서를 수정해주세요 !"}
-          </h2>
-
-          <Input
-            label="책 제목:"
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="여러분의 책 제목을 입력해주세요."
-          />
-          <Input
-            label="저자:"
-            name="author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            placeholder="여러분의 이름을 입력해주세요."
-          />
-          <Input
-            label="내용:"
-            name="content"
-            variant="large"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="여러분의 책 내용을 입력해주세요."
-          />
-
-          <div className="bookDetailPage-actions">
-            <MainButton type="button" onClick={handleSubmit}>
-              {isCreate ? "도서 등록" : "도서 수정"}
-            </MainButton>
-          </div>
-        </section>
-
-        {/* 우측: AI 표지 생성 */}
-        <section className="bookDetailPage-column">
-          <h2 className="bookDetailPage-heading">AI 이미지 자동 생성</h2>
-
-          <Input
-            label="API Key:"
-            name="apiKey"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="API Key를 입력해주세요."
-          />
-
-          {apiKeyError && (
-            <p className="validation-error bookDetailPage-apiError">
-              {apiKeyError}
-            </p>
-          )}
-
-          <RadioButton
-            selectedQuality={selectedQuality}
-            onChange={setSelectedQuality}
-          />
-
-          <div className="bookDetailPage-preview">
-            {coverPreview ? (
-              <BookImage src={coverPreview} alt="표지 미리보기" />
-            ) : (
-              <p className="bookDetailPage-preview-text">
-                여러분의 책 제목과 책 내용을 기반으로 생성됩니다 !
-              </p>
-            )}
-          </div>
-
-          <p className="bookDetailPage-preview-hint">
-            미 생성 시 기본 이미지로 대체됩니다!
+        {pageLoading && (
+          <p className="bookDetailPage-message">
+            도서 정보를 불러오는 중입니다.
           </p>
+        )}
 
-          <div className="bookDetailPage-actions">
-            <MainButton type="button" onClick={handleGenerateImage}>
-              이미지 생성
-            </MainButton>
-          </div>
-        </section>
+        {!pageLoading && (
+          <>
+            <section className="bookDetailPage-column">
+              <BookForm
+                isCreate={isCreate}
+                bookId={bookId}
+                bookData={bookData}
+                setBookData={setBookData}
+                onSave={handleSave}
+                onDelete={handleDelete}
+              />
+            </section>
+
+            <section className="bookDetailPage-column">
+              <ImageForm bookData={bookData} setBookData={setBookData} />
+            </section>
+          </>
+        )}
       </main>
+
+      {errorMessage && (
+        <div
+          className="bookDetailPage-modal-overlay"
+          role="presentation"
+          onClick={() => setErrorMessage("")}
+        >
+          <div
+            className="bookDetailPage-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="book-detail-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h2
+              id="book-detail-modal-title"
+              className="bookDetailPage-modal-title"
+            >
+              알림
+            </h2>
+            <p className="bookDetailPage-modal-message">{errorMessage}</p>
+            <button
+              type="button"
+              className="bookDetailPage-modal-button"
+              onClick={() => setErrorMessage("")}
+            >
+              확인
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
