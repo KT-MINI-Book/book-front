@@ -93,22 +93,37 @@ export const BookDelete = async (id) => {
 };
 
 // 도서 키워드 검색: GET /books?q={keyword}
-// title, author, content 등 모든 필드를 대상으로 부분 일치 검색
+// title, author, content를 대상으로 부분 일치 검색
 export const BookSearch = async (keyword) => {
   try {
     if (!keyword || !keyword.trim()) {
       return await BookList();
     }
 
-    const res = await fetch(
-      `${BASE_URL}?q=${encodeURIComponent(keyword.trim())}`
-    );
+    const trimmedKeyword = encodeURIComponent(keyword.trim());
 
-    if (!res.ok) {
+    const [titleRes, authorRes, contentRes] = await Promise.all([
+      fetch(`${BASE_URL}?title_like=${trimmedKeyword}`),
+      fetch(`${BASE_URL}?author_like=${trimmedKeyword}`),
+      fetch(`${BASE_URL}?content_like=${trimmedKeyword}`),
+    ]);
+
+    if (!titleRes.ok || !authorRes.ok || !contentRes.ok) {
       throw new Error("도서 검색 실패");
     }
 
-    return await res.json();
+    const [titleBooks, authorBooks, contentBooks] = await Promise.all([
+      titleRes.json(),
+      authorRes.json(),
+      contentRes.json(),
+    ]);
+
+    const mergedMap = new Map();
+    [...titleBooks, ...authorBooks, ...contentBooks].forEach((book) => {
+      mergedMap.set(book.id, book);
+    });
+
+    return Array.from(mergedMap.values());
   } catch (error) {
     console.error(error);
     return [];
