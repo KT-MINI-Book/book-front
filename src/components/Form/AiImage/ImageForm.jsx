@@ -16,19 +16,20 @@ const resizeImageDataUrl = (dataUrl, targetWidth = 200, targetHeight = 230) => {
       canvas.height = targetHeight;
 
       const ctx = canvas.getContext("2d");
-
       if (!ctx) {
         reject(new Error("이미지 리사이즈에 실패했습니다."));
-
         return;
       }
+
       ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
       const resizedDataUrl = canvas.toDataURL("image/jpeg", 0.72);
       resolve(resizedDataUrl);
     };
+
     img.onerror = () => {
       reject(new Error("이미지를 불러오지 못했습니다."));
     };
+
     img.src = dataUrl;
   });
 };
@@ -108,16 +109,35 @@ ${bookData.content}
 
       const imageBase64 = data.data[0].b64_json;
       const originalDataUrl = `data:image/png;base64,${imageBase64}`;
-
       const resizedDataUrl = await resizeImageDataUrl(
         originalDataUrl,
         200,
         230,
       );
 
+      const uploadResponse = await fetch(
+        "https://api.cloudinary.com/v1_1/dyi23dc8x/image/upload",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            file: resizedDataUrl,
+            upload_preset: "cover_upload",
+          }),
+        },
+      );
+
+      const uploadData = await uploadResponse.json();
+
+      if (!uploadResponse.ok) {
+        throw new Error(uploadData.error?.message || "이미지 업로드 실패");
+      }
+
       setBookData((prev) => ({
         ...prev,
-        coverImageUrl: resizedDataUrl,
+        coverImageUrl: uploadData.secure_url,
       }));
     } catch (error) {
       console.error("이미지 생성 에러:", error);
