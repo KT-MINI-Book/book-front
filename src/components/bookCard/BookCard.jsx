@@ -9,6 +9,7 @@ function BookCard({ book, onClick }) {
       <div className="book-card-content">
         <h3 className="book-card-title">{book.title}</h3>
         <p className="book-card-desc">{book.content}</p>
+        <p className="bookCard-views">👁️‍🗨️ {book.views || 0}</p>
       </div>
     </article>
   );

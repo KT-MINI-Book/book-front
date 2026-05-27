@@ -129,3 +129,22 @@ export const BookSearch = async (keyword) => {
     return [];
   }
 };
+
+// 조회수 증가: PATCH /books/{id}
+export const BookViewCount = async (id, views) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        views: views + 1,
+      }),
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};

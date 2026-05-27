@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BookCreate, BookDetail, BookUpdate, BookDelete } from "../api/bookApi";
+import { BookCreate, BookDetail, BookUpdate, BookDelete, BookViewCount } from "../api/bookApi";
 
 import Header from "../components/Header";
 import BookForm from "../components/Form/Book/BookForm";
@@ -11,6 +11,7 @@ const INITIAL_BOOK_DATA = {
   author: "",
   content: "",
   coverImageUrl: "",
+  views: 0
 };
 
 function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
@@ -43,7 +44,9 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
           author: data.author || "",
           content: data.content || "",
           coverImageUrl: data.coverImageUrl || "",
+          views: data.views || 0,
         });
+        await BookViewCount(bookId, data.views || 0);
       } catch (error) {
         console.error(error);
         setErrorMessage("도서 상세 정보를 불러오는 중 오류가 발생했습니다.");
@@ -70,6 +73,7 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
     if (isCreate) {
       const createdBook = await BookCreate({
         ...bookData,
+        views: 0,
         createdAt: now,
         updatedAt: now,
       });

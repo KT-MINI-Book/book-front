@@ -2,7 +2,7 @@
 
 .book-card {
   width: 260px;
-  height: 380px;
+  height: 400px;
   padding: 10px;
   border: 1px solid var(--border-card);
   border-radius: 6px;
@@ -53,4 +53,11 @@
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.bookCard-views {
+  margin-top: 8px;
+  text-align: left;
+  font-size: 12px;
+  color: #6f7350;
 }
