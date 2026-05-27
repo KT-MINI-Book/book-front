@@ -31,9 +31,24 @@
 }
 
 .book-form-actions {
-  margin-top: auto;
+  margin-top: 20px;
 
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 12px;
+}
+
+.book-form-actions .delete-button {
+  background: var(--error);
+  color: var(--text-white);
+}
+
+.book-form-actions .delete-button:hover:not(:disabled) {
+  background: #c97020;
+}
+
+.book-form-actions .delete-button:disabled {
+  background: #daa06a;
+  opacity: 0.6;
 }

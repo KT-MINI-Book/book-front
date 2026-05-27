@@ -70,7 +70,11 @@ function BookForm({
 
         <div className="book-form-actions">
           {!isCreate && (
-            <MainButton type="button" onClick={onDelete}>
+            <MainButton
+              type="button"
+              onClick={onDelete}
+              variant="delete-button"
+            >
               도서 삭제
             </MainButton>
           )}

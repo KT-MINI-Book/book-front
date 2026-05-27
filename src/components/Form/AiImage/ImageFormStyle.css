@@ -15,7 +15,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 22px;
 }
 
 .image-form-quality-row {
@@ -83,7 +83,7 @@
 .image-form-book-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .image-form-placeholder {

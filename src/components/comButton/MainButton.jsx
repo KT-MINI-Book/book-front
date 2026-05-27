@@ -1,12 +1,19 @@
-import './MainButton.css';
+import "./MainButton.css";
 
-function MainButton({ children, onClick, type = 'button', disabled = false }) {
+function MainButton({
+  children,
+  onClick,
+  type = "button",
+  disabled = false,
+  variant = "",
+}) {
+  const className = `comButton-main${variant ? ` ${variant}` : ""}`;
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="comButton-main"
+      className={className}
     >
       {children}
     </button>
