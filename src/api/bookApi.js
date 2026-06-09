@@ -35,7 +35,7 @@ export const BookDetail = async (id) => {
 // 도서 등록: POST /books
 export const BookCreate = async (book) => {
   try {
-    const res = await fetch(`${BASE_URL}/books`, {
+    const res = await fetch(`${BASE_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export const BookUpdate = async (id, book) => {
 // 도서 삭제: DELETE /books/{id}
 export const BookDelete = async (id) => {
   try {
-    const res = await fetch(`${BASE_URL}/books/${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: 'DELETE',
     });
 
@@ -102,7 +102,7 @@ export const BookSearch = async (keyword) => {
 
     const trimmedKeyword = encodeURIComponent(keyword.trim());
 
-    const res = await fetch(`${BASE_URL}?q=${trimmedKeyword}`);
+    const res = await fetch(`${BASE_URL}/search?q=${trimmedKeyword}`);
 
     if (!res.ok) {
       throw new Error("도서 검색 실패");
@@ -132,7 +132,7 @@ export const BookViewCount = async (id) => {
 
 export const BookCoverUpdate = async (id, coverImageUrl) => {
   try {
-    const res = await fetch(`${BASE_URL}/books/${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
