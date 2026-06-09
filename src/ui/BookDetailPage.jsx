@@ -46,7 +46,7 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
           coverImageUrl: data.coverImageUrl || "",
           views: data.views || 0,
         });
-        await BookViewCount(bookId, data.views || 0);
+        await BookViewCount(bookId);
       } catch (error) {
         console.error(error);
         setErrorMessage("도서 상세 정보를 불러오는 중 오류가 발생했습니다.");
@@ -72,10 +72,11 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
 
     if (isCreate) {
       const createdBook = await BookCreate({
-        ...bookData,
-        views: 0,
-        createdAt: now,
-        updatedAt: now,
+        title: bookData.title,
+        author: bookData.author,
+        content: bookData.content,
+        coverImageUrl: bookData.coverImageUrl,
+        views: 0
       });
 
       if (!createdBook) {
@@ -89,8 +90,10 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
     }
 
     const updatedBook = await BookUpdate(bookId, {
-      ...bookData,
-      updatedAt: now,
+      title: bookData.title,
+      author: bookData.author,
+      content: bookData.content,
+      coverImageUrl: bookData.coverImageUrl
     });
 
     if (!updatedBook) {
