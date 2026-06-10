@@ -1,0 +1,157 @@
+.bookReadDetailPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookReadDetailPage-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1064px;
+  margin: 0 auto;
+  padding: 32px 0 56px;
+  box-sizing: border-box;
+}
+
+.bookReadDetailPage-message {
+  margin-top: 80px;
+  text-align: center;
+  font-size: var(--font-small);
+  color: var(--text-placeholder);
+}
+
+.bookReadDetailPage-message--error {
+  color: var(--error);
+}
+
+.bookReadDetailPage-content {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  column-gap: 64px;
+  align-items: start;
+}
+
+.bookReadDetailPage-coverArea {
+  width: 100%;
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  background-color: var(--bg-input);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.bookReadDetailPage-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: var(--bg-main);
+}
+
+.bookReadDetailPage-info {
+  min-width: 0;
+}
+
+.bookReadDetailPage-title {
+  margin: 0 0 24px;
+  font-size: 30px;
+  line-height: 1.25;
+  color: var(--text-main);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.bookReadDetailPage-meta {
+  display: grid;
+  row-gap: 12px;
+  margin: 0 0 32px;
+}
+
+.bookReadDetailPage-metaItem {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  column-gap: 16px;
+  align-items: start;
+}
+
+.bookReadDetailPage-metaItem dt {
+  color: var(--text-placeholder);
+  font-weight: 600;
+}
+
+.bookReadDetailPage-metaItem dd {
+  margin: 0;
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.bookReadDetailPage-description {
+  border-top: 1px solid var(--border-main);
+  padding-top: 24px;
+}
+
+.bookReadDetailPage-description h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: var(--text-main);
+}
+
+.bookReadDetailPage-description p {
+  margin: 0;
+  color: var(--text-main);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bookReadDetailPage-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.bookReadDetailPage-button {
+  border: 0;
+  border-radius: 6px;
+  background-color: var(--primary);
+  color: var(--text-white);
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.bookReadDetailPage-button:hover {
+  background-color: #49501e;
+}
+
+.bookReadDetailPage-button--secondary {
+  background-color: transparent;
+  border: 1px solid var(--border-main);
+  color: var(--text-main);
+}
+
+.bookReadDetailPage-button--secondary:hover {
+  background-color: var(--bg-input);
+}
+
+@media (max-width: 900px) {
+  .bookReadDetailPage-main {
+    max-width: 520px;
+    padding: 32px 24px 56px;
+  }
+
+  .bookReadDetailPage-content {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+
+  .bookReadDetailPage-coverArea {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}

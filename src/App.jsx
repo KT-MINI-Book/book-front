@@ -2,6 +2,7 @@ import { useState } from "react";
 import HomePage from "./ui/HomePage";
 import BookListPage from "./ui/BookListPage";
 import BookDetailPage from "./ui/BookDetailPage";
+import BookReadDetailPage from "./ui/BookReadDetailPage";
 
 function App() {
   // 현재 보여줄 화면
@@ -25,7 +26,12 @@ function App() {
 
   /** 목록 카드 클릭: detail + view, bookId 지정 */
   const goDetail = (bookId) => {
-    setDetailMode("view");
+    setSelectedBookId(bookId);
+    setCurrentView("readDetail");
+  };
+
+  const goEdit = (bookId) => {
+    setDetailMode("edit");
     setSelectedBookId(bookId);
     setCurrentView("detail");
   };
@@ -42,6 +48,18 @@ function App() {
         onGoList={goList}
         onGoRegister={goRegister}
         onGoDetail={goDetail}
+      />
+    );
+  }
+
+  if (currentView === "readDetail") {
+    return (
+      <BookReadDetailPage
+        key={`read-${selectedBookId ?? "none"}`}
+        bookId={selectedBookId}
+        onGoList={goList}
+        onGoRegister={goRegister}
+        onGoEdit={goEdit}
       />
     );
   }

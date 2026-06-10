@@ -74,7 +74,7 @@ export const BookCreate = async (book) => {
 // 도서 수정: PATCH /books/{id}
 export const BookUpdate = async (id, book) => {
   try {
-    const res = await fetch(`${BASE_URL}/books/${id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
