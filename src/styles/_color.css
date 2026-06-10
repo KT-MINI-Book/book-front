@@ -30,3 +30,35 @@
   --badge-bg: #d4de95;
   --badge-text: #3d4127;
 }
+
+/* 다크 모드 색상 변수 */
+:root[data-theme="dark"] {
+  /* Validation */
+  --error: #ff8a50;
+  --success: #90ee90;
+
+  /* Main */
+  --primary: #a8b857;
+  --secondary: #5a6b2f;
+
+  /* Text */
+  --text-main: #e0e0e0;
+  --text-white: #ffffff;
+  --text-placeholder: #888888;
+
+  /* Background */
+  --bg-page: #1a1a1a;
+  --bg-card: #2a2a2a;
+  --bg-input: #333333;
+  --bg-header: #1a1a1a;
+
+  /* Border */
+  --border-main: #555555;
+  --border-input: #555555;
+  --border-card: #555555;
+  --border-image: #555555;
+
+  /* Badge */
+  --badge-bg: #5a6b2f;
+  --badge-text: #e0e0e0;
+}

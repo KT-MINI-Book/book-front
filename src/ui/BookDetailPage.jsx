@@ -14,7 +14,7 @@ const INITIAL_BOOK_DATA = {
   views: 0
 };
 
-function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
+function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onToggleTheme }) {
   const isCreate = mode === "create";
 
   const [bookData, setBookData] = useState(INITIAL_BOOK_DATA);
@@ -137,6 +137,8 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister }) {
         title="걷기가 서재"
         onGoList={onGoList}
         onGoCreate={onGoRegister}
+        isDarkMode={isDarkMode}
+        onToggleTheme={onToggleTheme}
       />
 
       <main className="bookDetailPage-main">
