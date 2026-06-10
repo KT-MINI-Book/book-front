@@ -101,6 +101,8 @@ function App() {
         onGoList={goList}
         onGoRegister={goRegister}
         onGoEdit={goEdit}
+        isDarkMode={isDarkMode}
+        onToggleTheme={toggleTheme}
       />
     );
   }

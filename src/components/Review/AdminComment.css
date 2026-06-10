@@ -1,0 +1,136 @@
+@import "../../styles/comSt.css";
+
+.adminComment {
+  margin-top: 16px;
+}
+
+/* --- 답변 표시 (왼쪽 accent만) --- */
+.adminComment--display {
+  padding: 14px 0 14px 16px;
+  border-left: 3px solid var(--primary);
+}
+
+.adminComment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.adminComment-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.adminComment-date {
+  font-size: 12px;
+  color: var(--text-placeholder);
+}
+
+.adminComment-content {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* --- 답변 작성 --- */
+.adminComment-toggleWrap .comButton-sub {
+  width: 100%;
+  text-align: left;
+}
+
+.adminComment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 0;
+}
+
+.adminComment-formTitle {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.adminComment-formDesc {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-placeholder);
+}
+
+.adminComment-message {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.adminComment-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminComment-actions .comButton-main {
+  padding: 10px 20px;
+}
+
+.adminComment-form .input-large {
+  height: 120px;
+}
+
+@media (max-width: 900px) {
+  .adminComment {
+    margin-top: 12px;
+  }
+
+  .adminComment--display {
+    padding: 12px 14px;
+  }
+
+  .adminComment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .adminComment-form {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .adminComment-formTitle {
+    font-size: 13px;
+  }
+
+  .adminComment-formDesc {
+    font-size: 12px;
+  }
+
+  .adminComment-message {
+    font-size: 13px;
+  }
+
+  .adminComment-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .adminComment-actions .comButton-main,
+  .adminComment-actions .comButton-sub {
+    width: 100%;
+    text-align: center;
+  }
+
+  .adminComment-form .input-large {
+    height: 100px;
+  }
+}

@@ -24,6 +24,11 @@
   color: var(--error);
 }
 
+/* 도서 정보 + 리뷰 섹션을 감싸는 article (리뷰는 article 하단 전체 너비) */
+.bookReadDetailPage-article {
+  width: 100%;
+}
+
 .bookReadDetailPage-content {
   display: grid;
   grid-template-columns: 360px 1fr;
