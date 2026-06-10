@@ -11,7 +11,7 @@
 }
 
 .image-form-body {
-  height: 440px;
+  min-height: 440px;
 
   display: flex;
   flex-direction: column;
@@ -168,4 +168,17 @@
 .image-form-footer .comButton-sub {
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+/* 모바일 (768px 미만) */
+@media (max-width: 767px) {
+  .image-form-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .image-form-notice {
+    white-space: normal;   /* 한 줄 강제 해제 → 줄바꿈 허용 */
+    text-align: center;
+  }
 }

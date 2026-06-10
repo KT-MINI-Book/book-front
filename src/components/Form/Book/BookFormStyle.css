@@ -1,6 +1,6 @@
 .book-form {
   width: 100%;
-  height: 462px;
+  min-height: 462px;
 
   display: flex;
   flex-direction: column;

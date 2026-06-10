@@ -7,7 +7,7 @@ import BookCard from "../components/bookCard/BookCard";
 import MainButton from "../components/comButton/MainButton";
 import "./BookListPage.css";
 
-function BookListPage({ onGoList, onGoRegister, onGoDetail }) {
+function BookListPage({ onGoList, onGoRegister, onGoDetail, isDarkMode, onToggleTheme }) {
   const [books, setBooks] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [sortType, setSortType] = useState("latest");
@@ -63,6 +63,8 @@ function BookListPage({ onGoList, onGoRegister, onGoDetail }) {
         title="걷기가 서재"
         onGoList={onGoList}
         onGoCreate={onGoRegister}
+        isDarkMode={isDarkMode}
+        onToggleTheme={onToggleTheme}
       />
 
       <main className="bookListPage-main">

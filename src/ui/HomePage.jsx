@@ -3,10 +3,10 @@ import MainButton from "../components/comButton/MainButton";
 import "./HomePage.css";
 
 // 홈 페이지 — 서비스 소개 및 목록·등록 진입
-function HomePage({ onGoList, onGoRegister }) {
+function HomePage({ onGoList, onGoRegister, isDarkMode, onToggleTheme }) {
   return (
     <div className="homePage">
-      <Header isMain />
+      <Header isMain isDarkMode={isDarkMode} onToggleTheme={onToggleTheme} />
 
       <main className="homePage-main">
         <h1 className="homePage-title">

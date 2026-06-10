@@ -91,7 +91,7 @@
   background-color: #49501e;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .bookDetailPage-main {
     grid-template-columns: 1fr;
     row-gap: 48px;

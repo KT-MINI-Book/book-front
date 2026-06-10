@@ -49,3 +49,10 @@
   font-weight: 700;
   line-height: 1;
 }
+
+/* 모바일 (768px 미만) */
+@media (max-width: 767px) {
+  .quality-radio {
+    gap: 16px;
+  }
+}

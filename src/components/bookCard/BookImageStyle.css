@@ -26,3 +26,11 @@
   object-fit: cover;
   object-position: center;
 }
+
+@media (max-width: 767px) {
+  .book-image-wrapper {
+    width: 100%;            
+    height: auto;
+    aspect-ratio: 200 / 230; 
+  }
+}

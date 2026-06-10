@@ -54,3 +54,19 @@ textarea::placeholder {
 .validation-success {
   color: var(--success);
 }
+
+/* 다크모드 */
+:root[data-theme="dark"] header {
+  background-color: #3d4127;
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .header-button {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+:root[data-theme="dark"] .header-button-primary {
+  background-color: #636b2f;
+  border-color: #636b2f;
+}
