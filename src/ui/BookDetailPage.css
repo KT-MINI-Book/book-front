@@ -39,10 +39,7 @@
 
 .bookDetailPage-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0; 
   background: rgba(61, 65, 39, 0.35);
   display: flex;
   align-items: center;
@@ -51,7 +48,7 @@
 }
 
 .bookDetailPage-modal {
-  width: min(420px, 92vw);
+  width: min(420px, calc(100% - 32px));
   background-color: var(--bg-input);
   border: 1px solid var(--border-main);
   border-radius: 12px;

@@ -1,5 +1,20 @@
 @import "./_color.css";
 
+html {
+  min-width: 360px;
+}
+
+body {
+  margin: 0;
+  min-width: 360px;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+}
+
+#root {
+  min-width: 360px;
+}
+
 body {
   background-color: var(--bg-page);
   color: var(--text-main);
