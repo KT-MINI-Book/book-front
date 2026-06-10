@@ -1,0 +1,102 @@
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-main);
+}
+
+.reviewForm-title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.reviewForm-rating {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reviewForm-ratingLabel {
+  margin: 0;
+  font-size: var(--font-small);
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.reviewForm-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.reviewForm-star {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text-placeholder);
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.reviewForm-star:hover {
+  transform: scale(1.1);
+}
+
+.reviewForm-star--active {
+  color: var(--primary);
+}
+
+/* .validation-error 공통 스타일 + 여백만 지정 */
+.reviewForm-message {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.reviewForm-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reviewForm-actions .comButton-main {
+  padding: 10px 24px;
+}
+
+@media (max-width: 900px) {
+  .reviewForm {
+    gap: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .reviewForm-title {
+    font-size: 16px;
+  }
+
+  .reviewForm-ratingLabel {
+    font-size: 16px;
+  }
+
+  .reviewForm-star {
+    font-size: 32px;
+    padding: 2px;
+  }
+
+  .reviewForm-message {
+    font-size: 13px;
+  }
+
+  .reviewForm-actions {
+    justify-content: stretch;
+  }
+
+  .reviewForm-actions .comButton-main {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
