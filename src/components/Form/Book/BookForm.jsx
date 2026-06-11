@@ -53,7 +53,8 @@ function BookForm({
             />
           </div>
 
-          <input
+          <Input
+            label="제목:"
             id="book-title"
             className="book-form-title-input"
             name="title"

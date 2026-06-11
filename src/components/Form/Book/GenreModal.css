@@ -18,9 +18,10 @@
 
   padding: 26px 24px 24px;
 
-  border: 1px solid var(--text-placeholder, #b8bd8f);
+  border: 1px solid var(--border-card, #b8bd8f);
   border-radius: 22px;
-  background: var(--bg-main, #fffef8);
+  background: var(--bg-card, #fffef8);
+  color: var(--text-main);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
 
   animation: genre-modal-pop 0.18s ease-out;
@@ -65,8 +66,8 @@
 
   border: none;
   border-radius: 50%;
-  background: rgba(101, 112, 42, 0.12);
-  color: var(--text-main);
+  background: var(--badge-bg);
+  color: var(--badge-text);
 
   font-size: 24px;
   font-weight: 700;
@@ -76,7 +77,7 @@
 }
 
 .genre-modal-close-button:hover {
-  background: rgba(101, 112, 42, 0.2);
+  background: var(--secondary, #d4de95);
 }
 
 .genre-modal-content {
@@ -104,9 +105,9 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid var(--text-placeholder, #b8bd8f);
+  border: 1px solid var(--border-input, #b8bd8f);
   border-radius: 999px;
-  background: #ffffff;
+  background: var(--bg-input, #ffffff);
   color: var(--text-main);
 
   font-size: 14px;
@@ -119,7 +120,7 @@
 
 .genre-modal-item:hover {
   border-color: var(--primary, #65702a);
-  background: rgba(101, 112, 42, 0.08);
+  background: var(--badge-bg, rgba(101, 112, 42, 0.08));
   color: var(--primary, #65702a);
 }
 
@@ -131,7 +132,7 @@
 
 .genre-modal-custom-area {
   padding-top: 16px;
-  border-top: 1px solid rgba(101, 112, 42, 0.18);
+  border-top: 1px solid var(--border-card, rgba(101, 112, 42, 0.18));
 }
 
 .genre-modal-custom-open-button {
@@ -151,7 +152,7 @@
 }
 
 .genre-modal-custom-open-button:hover {
-  background: rgba(101, 112, 42, 0.08);
+  background: var(--badge-bg, rgba(101, 112, 42, 0.08));
 }
 
 .genre-modal-custom-form {
@@ -168,9 +169,9 @@
 
   padding: 0 14px;
 
-  border: 1px solid var(--text-placeholder, #b8bd8f);
+  border: 1px solid var(--border-input, #b8bd8f);
   border-radius: 12px;
-  background: #ffffff;
+  background: var(--bg-input, #ffffff);
 
   color: var(--text-main);
   font-size: 14px;
@@ -223,9 +224,9 @@
   margin-top: 12px;
   padding: 14px;
 
-  border: 1px solid rgba(101, 112, 42, 0.25);
+  border: 1px solid var(--border-card, rgba(101, 112, 42, 0.25));
   border-radius: 14px;
-  background: rgba(101, 112, 42, 0.08);
+  background: var(--bg-input, rgba(101, 112, 42, 0.08));
 }
 
 .genre-modal-suggestion p {
@@ -253,7 +254,7 @@
 
   border-radius: 999px;
   border: 1px solid var(--primary, #65702a);
-  background: #ffffff;
+  background: var(--bg-input, #ffffff);
   color: var(--primary, #65702a);
 
   font-size: 13px;
