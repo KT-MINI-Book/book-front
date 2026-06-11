@@ -20,6 +20,15 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
 
   const [bookData, setBookData] = useState(INITIAL_BOOK_DATA);
   const [pageLoading, setPageLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (isCreate || !bookId) {
@@ -37,7 +46,10 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
         if (ignore) return;
 
         if (!data) {
-          toast.error("도서 정보를 불러오지 못했습니다.", { id: "book-detail-empty" });
+          toast.error("도서 정보를 불러오지 못했습니다.", { 
+            id: "book-detail-empty",
+            position: isMobile ? "bottom-center" : "top-right"
+          });
           return;
         }
 
@@ -53,7 +65,8 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
 
         console.error(error);
         toast.error("도서 상세 정보를 불러오는 중 오류가 발생했습니다.", {
-          id: "book-detail-fetch-error"
+          id: "book-detail-fetch-error",
+          position: isMobile ? "bottom-center" : "top-right"
         });
       } finally {
         if (!ignore) {
@@ -75,7 +88,9 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
       !bookData.author.trim() ||
       !bookData.content.trim()
     ) {
-      toast.error("제목, 저자, 내용을 모두 입력해주세요.");
+      toast.error("제목, 저자, 내용을 모두 입력해주세요.", {
+        position: isMobile ? "bottom-center" : "top-right"
+      });
       return;
     }
     try {
@@ -93,7 +108,9 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
         return;
       }
 
-      toast.success("도서가 성공적으로 등록되었습니다.")
+      toast.success("도서가 성공적으로 등록되었습니다.", {
+        position: isMobile ? "bottom-center" : "top-right"
+      });
       onGoList();
       return;
       }
@@ -106,11 +123,15 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
     });
 
     if (!updatedBook) {
-      toast.error("도서 수정에 실패했습니다.");
+      toast.error("도서 수정에 실패했습니다.", {
+        position: isMobile ? "bottom-center" : "top-right"
+      });
       return;
     }
 
-    toast.success("도서 정보가 수정되었습니다.");
+    toast.success("도서 정보가 수정되었습니다.",{
+      position: isMobile ? "bottom-center" : "top-right"
+    });
     onGoList();
     } catch (error) {
       console.error(error);
@@ -174,11 +195,12 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
       </div>
     ), {
       duration: Infinity,
-      position: "top-center",
+      position: isMobile ? "bottom-center" : "top-right",
       style: {
         background: "transparent",
         boxShadow: "none",
-        padding: 0
+        padding: 0,
+        margin: isMobile ? "0 0 20px 0" : "0"
       }
     });
   };
@@ -188,15 +210,21 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
         const success = await BookDelete(bookId);
 
         if (!success) {
-          toast.error("도서 삭제에 실패했습니다.");
+          toast.error("도서 삭제에 실패했습니다.",{
+            position: isMobile ? "bottom-center" : "top-center"
+          });
           return;
         }
 
-        toast.success("도서가 삭제되었습니다.");
+        toast.success("도서가 삭제되었습니다.",{
+          position: isMobile ? "bottom-center" : "top-center"
+        });
         onGoList();
       } catch (error) {
         console.error(error);
-        toast.error("삭제 중 서버 오류가 발생했습니다.")
+        toast.error("삭제 중 서버 오류가 발생했습니다.",{
+          position: isMobile ? "bottom-center" : "top-center"
+        })
       }
     };
 

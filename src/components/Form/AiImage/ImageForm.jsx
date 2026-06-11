@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import Input from "../../common/Input";
 import RadioButton from "../../comButton/RadioButton";
 import MainButton from "../../comButton/MainButton";
@@ -39,6 +40,15 @@ function ImageForm({ bookData, setBookData }) {
   const [selectedQuality, setSelectedQuality] = useState("medium");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const hasApiKey = apiKey.trim().length > 0;
 
@@ -62,7 +72,10 @@ function ImageForm({ bookData, setBookData }) {
     }
 
     if (!bookData.title.trim() || !bookData.content.trim()) {
-      alert("책 제목과 책 내용을 먼저 입력해주세요.");
+      toast.error("책 제목과 책 내용을 먼저 입력해주세요.", {
+        id: "image-form-validation",
+        position: isMobile ? "bottom-center" : "top-right"
+      });
       return;
     }
 
@@ -139,6 +152,11 @@ ${bookData.content}
         ...prev,
         coverImageUrl: uploadData.secure_url,
       }));
+
+      toast.success("AI 도서 표지가 생성되었습니다!", {
+        position: isMobile ? "bottom-center" : "top-right"
+      });
+
     } catch (error) {
       console.error("이미지 생성 에러:", error);
       setErrorMsg(error.message || "이미지 생성에 실패했습니다.");
