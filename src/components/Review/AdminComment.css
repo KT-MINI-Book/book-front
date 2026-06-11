@@ -43,6 +43,61 @@
   overflow-wrap: anywhere;
 }
 
+.adminComment-displayActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.adminComment-editBtn {
+  background: var(--mossy-olive);
+  color: var(--text-white);
+  border-color: var(--mossy-olive);
+}
+
+.adminComment-editBtn:hover:not(:disabled) {
+  background: var(--mossy-forest);
+  color: var(--text-white);
+  border-color: var(--mossy-forest);
+}
+
+.adminComment-deleteBtn {
+  background: transparent;
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.adminComment-deleteBtn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--error) 12%, transparent);
+  color: var(--error);
+  border-color: var(--error);
+}
+
+:root[data-theme="dark"] .adminComment-editBtn {
+  background: #818a68;
+  color: #f2f2ec;
+  border-color: #818a68;
+}
+
+:root[data-theme="dark"] .adminComment-editBtn:hover:not(:disabled) {
+  background: #8e9a73;
+  color: #f8f8f4;
+  border-color: #8e9a73;
+}
+
+:root[data-theme="dark"] .adminComment-deleteBtn {
+  color: #dc9979;
+  border-color: #b87c60;
+}
+
+:root[data-theme="dark"] .adminComment-deleteBtn:hover:not(:disabled) {
+  background: rgba(184, 124, 96, 0.2);
+  color: #e8a888;
+  border-color: #c4886a;
+}
+
 /* --- 답변 작성 --- */
 .adminComment-toggleWrap .comButton-sub {
   width: 100%;
@@ -104,6 +159,17 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+
+  .adminComment-displayActions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .adminComment-displayActions .comButton-sub {
+    width: 100%;
+    text-align: center;
   }
 
   .adminComment-form {
