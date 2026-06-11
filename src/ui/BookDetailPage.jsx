@@ -19,10 +19,7 @@ const INITIAL_BOOK_DATA = {
   content: "",
   coverImageUrl: "",
   views: 0,
-<<<<<<< HEAD
   likes: 0
-=======
->>>>>>> 44292714992db6ace0f454f0d93a1d80db4eae47
 };
 
 function BookDetailPage({
@@ -120,17 +117,6 @@ function BookDetailPage({
       return;
     }
 
-<<<<<<< HEAD
-    if (isCreate) {
-      const createdBook = await BookCreate({
-        title: bookData.title,
-        author: bookData.author,
-        content: bookData.content,
-        coverImageUrl: bookData.coverImageUrl,
-        views: 0,
-        likes: 0
-      });
-=======
     const bookPayload = {
       title: bookData.title.trim(),
       author: bookData.author.trim(),
@@ -138,13 +124,13 @@ function BookDetailPage({
       content: bookData.content.trim(),
       coverImageUrl: bookData.coverImageUrl || "",
     };
->>>>>>> 44292714992db6ace0f454f0d93a1d80db4eae47
 
     try {
       if (isCreate) {
         const createdBook = await BookCreate({
           ...bookPayload,
           views: 0,
+          likes: 0,
         });
 
         if (!createdBook) {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BookDetail, BookLikeCount, BookViewCount } from "../api/bookApi";
 
 import Header from "../components/Header";
-import ReviewSection from "../components/Review/ReviewSection"; // 리뷰·관리자 댓글 영역
+import ReviewSection from "../components/Review/ReviewSection";
 import defaultBookImage from "../assets/default.png";
 import "./BookReadDetailPage.css";
 
@@ -66,7 +66,6 @@ function BookReadDetailPage({
     };
   }, [bookId]);
 
-<<<<<<< HEAD
   const handleLike = async () => {
     if (!bookId) return;
 
@@ -80,11 +79,10 @@ function BookReadDetailPage({
         : prevBook
     );
   };
-=======
+
   const displayedErrorMessage = bookId
     ? errorMessage
     : "조회할 도서를 찾을 수 없습니다.";
->>>>>>> 44292714992db6ace0f454f0d93a1d80db4eae47
 
   return (
     <div className="bookReadDetailPage">
@@ -111,8 +109,6 @@ function BookReadDetailPage({
 
         {!pageLoading && !displayedErrorMessage && book && (
           <article className="bookReadDetailPage-article">
-            {/* 도서 정보(2열) + 리뷰 섹션(전체 너비)을 묶는 article */}
-            {/* --- 도서 상세: 표지 + 메타 정보 (기존 2열 그리드) --- */}
             <div className="bookReadDetailPage-content">
               <section className="bookReadDetailPage-coverArea">
                 <img
@@ -136,6 +132,10 @@ function BookReadDetailPage({
                   <div className="bookReadDetailPage-metaItem">
                     <dt>조회수</dt>
                     <dd>{book.views || 0}</dd>
+                  </div>
+                  <div className="bookReadDetailPage-metaItem">
+                    <dt>좋아요</dt>
+                    <dd>{book.likes || 0}</dd>
                   </div>
                 </dl>
 
@@ -170,7 +170,6 @@ function BookReadDetailPage({
               </section>
             </div>
 
-            {/* --- 리뷰 영역: 작성 폼 + 목록 + 관리자 댓글 (1단계 골격) --- */}
             <ReviewSection bookId={bookId} />
           </article>
         )}
