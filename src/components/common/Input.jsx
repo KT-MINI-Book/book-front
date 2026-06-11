@@ -1,6 +1,7 @@
 import "./InputStyle.css";
 
 function Input({
+  id,
   label,
   name,
   value,
@@ -11,10 +12,15 @@ function Input({
 }) {
   return (
     <div className="input-box">
-      {label && <label className="input-label">{label}</label>}
+      {label && (
+        <label className="input-label" htmlFor={id}>
+          {label}
+        </label>
+      )}
 
       {variant === "large" ? (
         <textarea
+          id={id}
           className="input-field input-large"
           name={name}
           value={value}
@@ -23,6 +29,7 @@ function Input({
         />
       ) : (
         <input
+          id={id}
           className="input-field input-small"
           type={type}
           name={name}

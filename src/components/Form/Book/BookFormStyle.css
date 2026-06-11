@@ -38,13 +38,22 @@
   gap: 8px;
 }
 
-.book-form-title-header {
+.book-form-title-row {
   width: 100%;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.book-form-title-row .input-box {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-form-title-row .genre-select-button {
+  flex-shrink: 0;
 }
 
 .book-form-title-label {

@@ -42,26 +42,23 @@ function BookForm({
 
       <form className="book-form-body" onSubmit={handleSubmit}>
         <div className="book-form-title-field">
-          <div className="book-form-title-header">
-            <label className="book-form-title-label" htmlFor="book-title">
-              책 제목:
-            </label>
+          <label className="book-form-title-label" htmlFor="book-title">
+            제목:
+          </label>
 
+          <div className="book-form-title-row">
+            <Input
+              id="book-title"
+              name="title"
+              value={bookData.title}
+              onChange={handleChange}
+              placeholder="여러분의 책 제목을 입력해주세요."
+            />
             <GenreSelector
               selectedGenre={bookData.genre}
               onSelectGenre={handleGenreSelect}
             />
           </div>
-
-          <Input
-            label="제목:"
-            id="book-title"
-            className="book-form-title-input"
-            name="title"
-            value={bookData.title}
-            onChange={handleChange}
-            placeholder="여러분의 책 제목을 입력해주세요."
-          />
         </div>
 
         <Input
