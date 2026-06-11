@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router'
 import './styles/colors.css'
 import './styles/font-size.css'
 import "./styles/comSt.css";
@@ -7,6 +8,9 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    {/* App 내부에서 URL 기반 라우팅을 사용할 수 있도록 설정 */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )
