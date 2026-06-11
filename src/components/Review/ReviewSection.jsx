@@ -6,6 +6,7 @@ import {
   likeReview,
 } from "../../api/reviewApi";
 import { formatRating } from "../../utils/reviewFormat";
+import { useLockBodyScroll } from "../../utils/useLockBodyScroll";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 import "./ReviewSection.css";
@@ -21,6 +22,8 @@ function ReviewSection({ bookId }) {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useLockBodyScroll(isModalOpen);
 
   const loadReviews = useCallback(async () => {
     if (!bookId) {
@@ -137,7 +140,8 @@ function ReviewSection({ bookId }) {
           style={{
             position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
             backgroundColor: "rgba(0, 0, 0, 0.45)", display: "flex",
-            justifyContent: "center", alignItems: "center", zIndex: 1000
+            justifyContent: "center", alignItems: "center", zIndex: 1000,
+            overscrollBehavior: "contain",
           }}
         >
           <div 

@@ -8,6 +8,7 @@
   justify-content: center;
 
   background: rgba(20, 22, 16, 0.42);
+  overscroll-behavior: contain;
 }
 
 .genre-modal {

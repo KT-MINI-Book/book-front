@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import Fuse from "fuse.js";
 import Filter from "badwords-ko";
 import { getGenreErrorMessage, getGenres } from "../../../api/genreApi";
+import { useLockBodyScroll } from "../../../utils/useLockBodyScroll";
 import "./GenreModal.css";
 
 const getGenreName = (genre) => {
@@ -54,6 +55,8 @@ function GenreModal({
   title = "장르 선택",
   description = "책의 분위기에 가장 가까운 장르를 골라주세요.",
 }) {
+  useLockBodyScroll(true);
+
   const [genres, setGenres] = useState([]);
   const [pendingGenres, setPendingGenres] = useState(() => {
     if (selectedGenre?.isNew) {
