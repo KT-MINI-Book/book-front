@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BookCreate, BookDetail, BookUpdate, BookDelete, BookViewCount } from "../api/bookApi";
+import { BookCreate, BookDetail, BookUpdate, BookDelete } from "../api/bookApi";
 
 import Header from "../components/Header";
 import BookForm from "../components/Form/Book/BookForm";
@@ -49,7 +49,6 @@ function BookDetailPage({ mode, bookId, onGoList, onGoRegister, isDarkMode, onTo
           coverImageUrl: data.coverImageUrl || "",
           views: data.views || 0,
         });
-        await BookViewCount(bookId);
       } catch (error) {
         if (ignore) return;
 
