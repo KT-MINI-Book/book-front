@@ -2,8 +2,17 @@ import { useState } from "react";
 import GenreModal from "./GenreModal";
 import "./GenreSelector.css";
 
+const getGenreName = (genre) => {
+  if (typeof genre === "string") {
+    return genre;
+  }
+
+  return genre?.name || "";
+};
+
 function GenreSelector({ selectedGenre, onSelectGenre }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const selectedGenreName = getGenreName(selectedGenre);
 
   const handleSelectGenre = (genre) => {
     onSelectGenre(genre);
@@ -14,10 +23,10 @@ function GenreSelector({ selectedGenre, onSelectGenre }) {
     <>
       <button
         type="button"
-        className={`genre-select-button ${selectedGenre ? "selected" : ""}`}
+        className={`genre-select-button ${selectedGenreName ? "selected" : ""}`}
         onClick={() => setIsModalOpen(true)}
       >
-        <span>{selectedGenre || "장르 선택"}</span>
+        <span>{selectedGenreName || "장르 선택"}</span>
         <span className="genre-select-arrow">▾</span>
       </button>
 
