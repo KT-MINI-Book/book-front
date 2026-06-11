@@ -11,14 +11,14 @@
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 0 clamp(44px, 5vw, 72px);
+  padding: clamp(20px, 4vh, 36px) clamp(44px, 5vw, 72px);
   box-sizing: border-box;
 }
 
 .homePage-carousel {
   position: relative;
   width: 100%;
-  height: min(610px, calc(100vh - 94px));
+  min-height: min(610px, calc(100svh - 118px));
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -26,7 +26,7 @@
 
 .homePage-carouselStage {
   flex: 1;
-  min-height: 0;
+  min-height: clamp(500px, calc(100svh - 180px), 560px);
   display: grid;
   grid-template-columns: 36px minmax(0, 1fr) 36px;
   align-items: stretch;
@@ -34,6 +34,7 @@
 }
 
 .homePage-carouselViewport {
+  min-height: 0;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border-card);
@@ -53,7 +54,8 @@
 .homePage-slide {
   width: 100%;
   min-width: 100%;
-  min-height: 100%;
+  height: 100%;
+  min-height: 0;
   padding: 28px 56px;
   box-sizing: border-box;
   color: var(--text-main);
@@ -78,10 +80,10 @@
 
 .homePage-recommendSlide {
   display: grid;
-  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 240px);
   align-items: center;
   justify-content: center;
-  gap: 64px;
+  gap: 48px;
   padding: 28px 72px;
   text-align: left;
 }
@@ -99,22 +101,23 @@
   color: var(--primary);
   font-size: 14px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .homePage-title {
   margin: 0 0 14px;
   color: var(--text-main);
-  font-size: clamp(30px, 4.6vw, 46px);
+  font-size: 46px;
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1.12;
   word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .homePage-recommendSlide .homePage-title {
-  font-size: clamp(30px, 4vw, 42px);
+  font-size: 42px;
 }
 
 .homePage-recommendSlide .homePage-eyebrow {
@@ -124,16 +127,17 @@
 
 .homePage-recommendSlide .homePage-desc {
   max-width: 560px;
-  font-size: clamp(16px, 1.7vw, 20px);
+  font-size: 20px;
   line-height: 1.56;
 }
 
 .homePage-desc {
   margin: 0;
   color: var(--text-main);
-  font-size: clamp(16px, 1.8vw, 21px);
+  font-size: 21px;
   line-height: 1.58;
   word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .homePage-authorQuote {
@@ -143,10 +147,11 @@
   border-radius: 0 8px 8px 0;
   background-color: var(--bg-card);
   color: var(--text-main);
-  font-size: clamp(17px, 2vw, 21px);
+  font-size: 21px;
   font-weight: 700;
   line-height: 1.45;
   word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .homePage-tags {
@@ -222,6 +227,9 @@
 
 .homePage-featureBookText {
   max-width: 620px;
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
 }
 
 .homePage-featureBookInfo {
@@ -235,17 +243,24 @@
 .homePage-featureBookInfo strong {
   display: block;
   color: var(--text-main);
-  font-size: clamp(22px, 2.8vw, 30px);
+  font-size: 30px;
   line-height: 1.25;
   word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .homePage-featureBookInfo p {
   margin: 10px 0 0;
   color: var(--text-main);
-  font-size: clamp(14px, 1.35vw, 16px);
+  font-size: 16px;
   line-height: 1.55;
   word-break: keep-all;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .homePage-featureBookMeta {
@@ -273,8 +288,22 @@
   display: flex;
   justify-content: center;
   justify-self: center;
-  width: 260px;
+  grid-column: 2;
+  grid-row: 1;
+  width: min(240px, 100%);
   transition: transform 0.15s ease;
+}
+
+.homePage-featureBookCard .book-card {
+  width: 100%;
+  height: auto;
+  min-height: 370px;
+}
+
+.homePage-featureBookCard .book-image-wrapper {
+  width: min(200px, 100%);
+  height: auto;
+  aspect-ratio: 200 / 230;
 }
 
 .homePage-featureBookCard:hover {
@@ -304,7 +333,7 @@
   color: var(--text-white);
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   box-shadow: 0 8px 16px rgba(61, 65, 39, 0.18);
 }
 
@@ -407,28 +436,55 @@
 
 @media (max-width: 980px) {
   .homePage-main {
-    padding: 0 28px;
+    padding: 18px 28px;
   }
 
   .homePage-slide {
-    padding: 28px 40px;
+    padding: 26px 34px;
+  }
+
+  .homePage-title {
+    font-size: 38px;
+  }
+
+  .homePage-recommendSlide .homePage-title {
+    font-size: 34px;
+  }
+
+  .homePage-desc,
+  .homePage-recommendSlide .homePage-desc {
+    font-size: 18px;
+  }
+
+  .homePage-authorQuote {
+    font-size: 19px;
+  }
+
+  .homePage-featureBookInfo strong {
+    font-size: 26px;
   }
 
   .homePage-profileSlide {
     grid-template-columns: 1fr;
-    gap: 30px;
+    align-content: center;
+    gap: 24px;
     text-align: center;
   }
 
   .homePage-recommendSlide {
-    gap: 34px;
-    padding: 28px 40px;
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 220px);
+    gap: 28px;
+    padding: 26px 34px;
   }
 
-  .homePage-profileText,
-  .homePage-featureBookText {
+  .homePage-profileText {
     max-width: 720px;
     margin: 0 auto;
+  }
+
+  .homePage-featureBookText {
+    max-width: 620px;
+    margin: 0;
   }
 
   .homePage-profileText .homePage-tags,
@@ -437,7 +493,15 @@
   }
 
   .homePage-authorCard {
-    width: min(260px, 100%);
+    width: min(220px, 100%);
+  }
+
+  .homePage-featureBookCard {
+    width: min(220px, 100%);
+  }
+
+  .homePage-featureBookCard .book-card {
+    min-height: 342px;
   }
 
   .homePage-carouselStage {
@@ -453,21 +517,53 @@
 
 @media (max-width: 767px) {
   .homePage-main {
-    padding: 8px 12px;
+    align-items: stretch;
+    padding: 12px;
   }
 
   .homePage-carousel {
-    height: auto;
-    min-height: 580px;
+    min-height: 0;
+    gap: 12px;
   }
 
   .homePage-slide {
-    padding: 26px 18px;
+    height: auto;
+    padding: 24px 18px;
+  }
+
+  .homePage-title,
+  .homePage-recommendSlide .homePage-title {
+    font-size: 28px;
+    line-height: 1.18;
+  }
+
+  .homePage-desc,
+  .homePage-recommendSlide .homePage-desc {
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  .homePage-authorQuote {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
+  .homePage-tags {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .homePage-tag {
+    min-height: 30px;
+    padding: 0 11px;
+    font-size: 13px;
   }
 
   .homePage-recommendSlide {
     grid-template-columns: 1fr;
-    gap: 24px;
+    align-content: start;
+    gap: 22px;
+    padding: 24px 18px;
     text-align: center;
   }
 
@@ -481,18 +577,64 @@
     justify-content: center;
   }
 
+  .homePage-featureBookInfo {
+    padding: 14px 16px;
+  }
+
+  .homePage-featureBookInfo strong {
+    font-size: 20px;
+  }
+
+  .homePage-featureBookInfo p {
+    font-size: 14px;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+  }
+
   .homePage-featureBookCard {
-    width: min(260px, 100%);
+    grid-column: auto;
+    grid-row: auto;
+    width: min(220px, 100%);
+  }
+
+  .homePage-featureBookText {
+    grid-column: auto;
+    grid-row: auto;
+    justify-self: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .homePage-featureBookCard .book-card {
+    min-height: 0;
   }
 
   .homePage-carouselStage {
-    grid-template-columns: 28px minmax(0, 1fr) 28px;
-    gap: 6px;
+    min-height: 0;
+    grid-template-areas:
+      "viewport viewport"
+      "prev next";
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .homePage-carouselViewport {
+    grid-area: viewport;
+  }
+
+  .homePage-carouselButton--prev {
+    grid-area: prev;
+    justify-self: end;
+  }
+
+  .homePage-carouselButton--next {
+    grid-area: next;
+    justify-self: start;
   }
 
   .homePage-carouselButton {
-    width: 28px;
-    height: 28px;
+    width: 34px;
+    height: 34px;
     font-size: 15px;
   }
 
