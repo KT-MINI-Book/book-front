@@ -1,6 +1,7 @@
 import Input from "../../common/Input";
 import MainButton from "../../comButton/MainButton";
 import "./BookFormStyle.css";
+import { toast } from "react-hot-toast";
 
 function BookForm({
   isCreate,
@@ -21,16 +22,6 @@ function BookForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (
-      !bookData.title.trim() ||
-      !bookData.author.trim() ||
-      !bookData.content.trim()
-    ) {
-      alert("책 제목, 저자, 내용을 모두 입력해주세요.");
-      return;
-    }
-
     onSave();
   };
 
