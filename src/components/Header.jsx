@@ -1,5 +1,26 @@
+import { useLocation } from "react-router";
 import "./Header.css";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
+
+function getNavVisibility(pathname) {
+  if (pathname === "/books") {
+    return { showList: false, showCreate: true };
+  }
+
+  if (pathname === "/books/new") {
+    return { showList: true, showCreate: false };
+  }
+
+  if (pathname.endsWith("/edit")) {
+    return { showList: true, showCreate: true };
+  }
+
+  if (pathname.startsWith("/books/")) {
+    return { showList: false, showCreate: true };
+  }
+
+  return { showList: true, showCreate: true };
+}
 
 function Header({
   isMain = false,
@@ -9,6 +30,8 @@ function Header({
   isDarkMode = false,
   onToggleTheme,
 }) {
+  const { pathname } = useLocation();
+  const { showList, showCreate } = getNavVisibility(pathname);
   const headerClass = isMain ? "header header--main" : "header";
 
   return (
@@ -16,18 +39,22 @@ function Header({
       <h1 className="header-title">{title}</h1>
 
       <div className="header-content">
-        {!isMain && (
+        {!isMain && (showList || showCreate) && (
           <nav className="header-nav">
-            <button className="header-button" onClick={onGoList}>
-              도서 목록
-            </button>
+            {showList && (
+              <button className="header-button" onClick={onGoList}>
+                도서 목록
+              </button>
+            )}
 
-            <button
-              className="header-button header-button-primary"
-              onClick={onGoCreate}
-            >
-              새 도서 등록
-            </button>
+            {showCreate && (
+              <button
+                className="header-button header-button-primary"
+                onClick={onGoCreate}
+              >
+                새 도서 등록
+              </button>
+            )}
           </nav>
         )}
         
