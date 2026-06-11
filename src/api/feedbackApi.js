@@ -1,16 +1,9 @@
+import { parseErrorMessage, parseJsonResponse } from "./httpUtils";
+
 const BASE_URL = "http://localhost:8080";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json",
-};
-
-const parseErrorMessage = async (res, fallback) => {
-  try {
-    const data = await res.json();
-    return data.message || fallback;
-  } catch {
-    return fallback;
-  }
 };
 
 /** GET /reviews/{reviewId}/feedback — 없으면 null */
@@ -25,7 +18,8 @@ export const getFeedbackByReviewId = async (reviewId) => {
     throw new Error(await parseErrorMessage(res, "피드백 조회에 실패했습니다."));
   }
 
-  return await res.json();
+  const data = await parseJsonResponse(res);
+  return data ?? null;
 };
 
 /** POST /reviews/{reviewId}/feedback */
@@ -44,7 +38,12 @@ export const createFeedback = async (reviewId, content) => {
     throw new Error(await parseErrorMessage(res, "피드백 등록에 실패했습니다."));
   }
 
-  return await res.json();
+  const data = await parseJsonResponse(res);
+  if (data) {
+    return data;
+  }
+
+  return getFeedbackByReviewId(reviewId);
 };
 
 /** PATCH /feedbacks/{feedbackId} */
@@ -59,7 +58,7 @@ export const updateFeedback = async (feedbackId, content) => {
     throw new Error(await parseErrorMessage(res, "피드백 수정에 실패했습니다."));
   }
 
-  return await res.json();
+  return await parseJsonResponse(res);
 };
 
 /** DELETE /feedbacks/{feedbackId} */

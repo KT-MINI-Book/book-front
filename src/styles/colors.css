@@ -7,3 +7,10 @@
   --mossy-lime: #d4de95;
   --mossy-forest: #3d4127;
 }
+
+:root[data-theme="dark"] {
+  --mossy-olive: #b9c487;
+  --mossy-sage: #839472;
+  --mossy-lime: rgba(185, 196, 131, 0.19);
+  --mossy-forest: #cbd499;
+}

@@ -102,6 +102,9 @@ function BookListPage({ onGoList, onGoRegister, onGoDetail, isDarkMode, onToggle
     if (sortType === "title") {
       return a.title.localeCompare(b.title);
     }
+    if (sortType === "view") {
+      return (b.views || 0) - (a.views || 0);
+    }
 
     return 0;
   });
@@ -157,6 +160,7 @@ function BookListPage({ onGoList, onGoRegister, onGoDetail, isDarkMode, onToggle
             <option value="latest">최신순</option>
             <option value="oldest">오래된순</option>
             <option value="title">제목순</option>
+            <option value="view">조회수순</option>
           </select>
         </div>
 

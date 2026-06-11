@@ -62,9 +62,17 @@ function ReviewSection({ bookId }) {
     const updatedReview = await likeReview(reviewId);
 
     setReviews((prev) =>
-      prev.map((review) =>
-        review.reviewId === updatedReview.reviewId ? updatedReview : review,
-      ),
+      prev.map((review) => {
+        if (review.reviewId !== reviewId) {
+          return review;
+        }
+
+        if (updatedReview) {
+          return updatedReview;
+        }
+
+        return { ...review, likeCount: review.likeCount + 1 };
+      }),
     );
   };
 

@@ -1,25 +1,9 @@
+import { parseErrorMessage, parseJsonResponse } from "./httpUtils";
+
 const BASE_URL = "http://localhost:8080";
 
 const JSON_HEADERS = {
   "Content-Type": "application/json",
-};
-
-const parseErrorMessage = async (res, fallback) => {
-  try {
-    const text = await res.text();
-    if (!text) {
-      return fallback;
-    }
-
-    try {
-      const data = JSON.parse(text);
-      return data.message || text;
-    } catch {
-      return text;
-    }
-  } catch {
-    return fallback;
-  }
 };
 
 /** GET /books/{bookId}/reviews */
@@ -31,7 +15,8 @@ export const getReviewsByBookId = async (bookId) => {
       throw new Error("리뷰 목록 조회 실패");
     }
 
-    return await res.json();
+    const data = await parseJsonResponse(res);
+    return data ?? [];
   } catch (error) {
     console.error(error);
     return [];
@@ -47,7 +32,8 @@ export const getBookRating = async (bookId) => {
       throw new Error("평균 별점 조회 실패");
     }
 
-    return await res.json();
+    const data = await parseJsonResponse(res);
+    return data ?? 0;
   } catch (error) {
     console.error(error);
     return 0;
@@ -66,7 +52,7 @@ export const createReview = async (bookId, { content, rating }) => {
     throw new Error(await parseErrorMessage(res, "리뷰 작성에 실패했습니다."));
   }
 
-  return await res.json();
+  return await parseJsonResponse(res);
 };
 
 /** PATCH /reviews/{reviewId} */
@@ -81,7 +67,7 @@ export const updateReview = async (reviewId, { content, rating }) => {
     throw new Error(await parseErrorMessage(res, "리뷰 수정에 실패했습니다."));
   }
 
-  return await res.json();
+  return await parseJsonResponse(res);
 };
 
 /** DELETE /reviews/{reviewId} */
@@ -107,5 +93,5 @@ export const likeReview = async (reviewId) => {
     throw new Error(await parseErrorMessage(res, "좋아요 처리에 실패했습니다."));
   }
 
-  return await res.json();
+  return await parseJsonResponse(res);
 };
