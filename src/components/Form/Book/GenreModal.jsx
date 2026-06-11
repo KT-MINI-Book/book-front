@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import "./GenreModal.css";
 
 const GENRES = [
@@ -27,14 +28,46 @@ const GENRES = [
   "아동",
 ];
 
+const normalizeGenre = (value) => {
+  return value.trim().replace(/\s+/g, " ");
+};
+
+const isDuplicateGenre = (newGenre, genres) => {
+  const normalizedNewGenre = normalizeGenre(newGenre).toLowerCase();
+
+  return genres.some(
+    (genre) => normalizeGenre(genre).toLowerCase() === normalizedNewGenre
+  );
+};
+
+const isValidGenreText = (genre) => {
+  return /^[가-힣a-zA-Z0-9/&\s]+$/.test(genre);
+};
+
 function GenreModal({ selectedGenre, onSelectGenre, onClose }) {
   const [isCustomOpen, setIsCustomOpen] = useState(false);
   const [customGenre, setCustomGenre] = useState("");
 
   const handleCustomGenreAdd = () => {
-    const trimmedGenre = customGenre.trim();
+    const trimmedGenre = normalizeGenre(customGenre);
 
     if (!trimmedGenre) {
+      toast.error("장르를 입력해주세요.");
+      return;
+    }
+
+    if (trimmedGenre.length > 12) {
+      toast.error("장르는 12자 이하로 입력해주세요.");
+      return;
+    }
+
+    if (!isValidGenreText(trimmedGenre)) {
+      toast.error("장르에는 한글, 영문, 숫자, /, &, 공백만 사용할 수 있습니다.");
+      return;
+    }
+
+    if (isDuplicateGenre(trimmedGenre, GENRES)) {
+      toast.error("이미 존재하는 장르입니다.");
       return;
     }
 
