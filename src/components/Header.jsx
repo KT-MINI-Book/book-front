@@ -24,7 +24,7 @@ function getNavVisibility(pathname) {
 
 function Header({
   isMain = false,
-  title = "5반 13조 도서 관리 시스템",
+  title = "걷기가 서",
   onGoList,
   onGoCreate,
   isDarkMode = false,
