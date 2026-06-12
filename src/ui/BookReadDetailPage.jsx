@@ -111,14 +111,16 @@ function BookReadDetailPage({
           <article className="bookReadDetailPage-article">
             <div className="bookReadDetailPage-content">
               <section className="bookReadDetailPage-coverArea">
-                <img
-                  className="bookReadDetailPage-cover"
-                  src={book.coverImageUrl || defaultBookImage}
-                  alt={book.title}
-                  onError={(e) => {
-                    e.currentTarget.src = defaultBookImage;
-                  }}
-                />
+                <div className="bookReadDetailPage-book3d">
+                  <img
+                    className="bookReadDetailPage-cover"
+                    src={book.coverImageUrl || defaultBookImage}
+                    alt={book.title}
+                    onError={(e) => {
+                      e.currentTarget.src = defaultBookImage;
+                    }}
+                  />
+                </div>
               </section>
 
               <section className="bookReadDetailPage-info">

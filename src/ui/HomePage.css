@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   background:
-    linear-gradient(135deg, rgba(212, 222, 149, 0.22), transparent 34%),
+    radial-gradient(circle at 18% 8%, rgba(215, 226, 160, 0.42), transparent 32%),
+    linear-gradient(135deg, rgba(255, 255, 247, 0.34), transparent 36%),
     var(--bg-page);
 }
 
@@ -38,11 +39,11 @@
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border-card);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(244, 246, 232, 0.74)),
+    linear-gradient(145deg, rgba(255, 255, 247, 0.82), rgba(242, 246, 232, 0.9)),
     var(--bg-input);
-  box-shadow: 0 18px 38px rgba(61, 65, 39, 0.12);
+  box-shadow: var(--shadow-raised);
 }
 
 .homePage-carouselTrack {
@@ -143,8 +144,9 @@
 .homePage-authorQuote {
   margin: 20px 0 0;
   padding: 16px 18px;
+  border: 1px solid var(--border-card);
   border-left: 5px solid var(--primary);
-  border-radius: 0 8px 8px 0;
+  border-radius: var(--radius-md);
   background-color: var(--bg-card);
   color: var(--text-main);
   font-size: 21px;
@@ -152,6 +154,7 @@
   line-height: 1.45;
   word-break: keep-all;
   overflow-wrap: break-word;
+  box-shadow: var(--shadow-soft);
 }
 
 .homePage-tags {
@@ -176,6 +179,7 @@
   color: var(--text-main);
   font-size: 15px;
   font-weight: 700;
+  box-shadow: var(--shadow-soft);
 }
 
 .homePage-authorCard {
@@ -185,10 +189,10 @@
   width: 100%;
   max-width: 260px;
   border: 1px solid var(--border-card);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background-color: var(--bg-input);
-  box-shadow: 0 16px 30px rgba(61, 65, 39, 0.18);
+  box-shadow: var(--shadow-raised);
 }
 
 .homePage-authorCard::after {
@@ -235,9 +239,11 @@
 .homePage-featureBookInfo {
   margin-top: 26px;
   padding: 18px 20px;
+  border: 1px solid var(--border-card);
   border-left: 5px solid var(--primary);
-  border-radius: 0 8px 8px 0;
+  border-radius: var(--radius-md);
   background-color: var(--bg-card);
+  box-shadow: var(--shadow-soft);
 }
 
 .homePage-featureBookInfo strong {
@@ -281,6 +287,7 @@
   color: var(--text-main);
   font-size: 13px;
   font-weight: 800;
+  box-shadow: var(--shadow-soft);
 }
 
 .homePage-featureBookCard {
@@ -316,7 +323,7 @@
 }
 
 .homePage-featureBookCard:hover .book-card {
-  box-shadow: 0 6px 14px rgba(61, 65, 39, 0.16);
+  box-shadow: var(--shadow-raised);
 }
 
 .homePage-bookRank {
@@ -334,7 +341,7 @@
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0;
-  box-shadow: 0 8px 16px rgba(61, 65, 39, 0.18);
+  box-shadow: var(--shadow-soft);
 }
 
 .homePage-bookMessage {
@@ -381,11 +388,19 @@
   font-weight: 800;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(61, 65, 39, 0.13);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-surface);
 }
 
 .homePage-carouselButton:hover {
   background-color: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-raised);
+}
+
+.homePage-carouselButton:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-pressed);
 }
 
 .homePage-carouselButton--prev {
@@ -415,23 +430,37 @@
   font-size: 13px;
   font-weight: 800;
   cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-surface);
 }
 
 .homePage-tab--active {
   background-color: var(--primary);
   color: var(--text-white);
+  box-shadow: var(--shadow-pressed);
+}
+
+.homePage-tab:hover {
+  transform: translateY(-1px);
 }
 
 :root[data-theme="dark"] .homePage-carouselViewport {
   background:
-    linear-gradient(145deg, rgba(42, 42, 42, 0.94), rgba(26, 26, 26, 0.84)),
+    linear-gradient(145deg, rgba(45, 53, 36, 0.94), rgba(30, 36, 25, 0.9)),
     var(--bg-card);
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+  box-shadow: var(--shadow-raised);
+}
+
+:root[data-theme="dark"] .homePage {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(74, 87, 54, 0.34), transparent 32%),
+    linear-gradient(135deg, rgba(91, 106, 68, 0.12), transparent 36%),
+    var(--bg-page);
 }
 
 :root[data-theme="dark"] .homePage-authorCard,
 :root[data-theme="dark"] .homePage-carouselButton {
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.32);
+  box-shadow: var(--shadow-raised);
 }
 
 @media (max-width: 980px) {

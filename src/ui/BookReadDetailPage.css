@@ -2,6 +2,9 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(215, 226, 160, 0.26), transparent 30%),
+    var(--bg-page);
 }
 
 .bookReadDetailPage-main {
@@ -38,24 +41,92 @@
 
 .bookReadDetailPage-coverArea {
   width: 100%;
-  border: 1px solid var(--border-main);
-  border-radius: 8px;
-  background-color: var(--bg-input);
-  padding: 20px;
+  padding: 28px 28px 34px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.bookReadDetailPage-book3d {
+  position: relative;
+  width: min(100%, 314px);
+  aspect-ratio: 3 / 4;
+  border-radius: 16px 22px 22px 16px;
+  background:
+    linear-gradient(90deg, #d8cfb3 0 14px, #fffaf0 14px 100%);
+  isolation: isolate;
+  transform: perspective(1100px) rotateY(-7deg) rotateX(1deg);
+  transform-style: preserve-3d;
+  box-shadow:
+    24px 28px 46px rgba(47, 51, 40, 0.22),
+    8px 10px 18px rgba(47, 51, 40, 0.14);
+}
+
+.bookReadDetailPage-book3d::before {
+  content: "";
+  position: absolute;
+  top: 3%;
+  left: -13px;
+  z-index: 0;
+  width: 18px;
+  height: 94%;
+  border-radius: 12px 0 0 12px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(47, 51, 40, 0.36),
+      rgba(255, 255, 255, 0.24) 68%,
+      rgba(47, 51, 40, 0.12)
+    );
+  transform: translateZ(-2px);
+}
+
+.bookReadDetailPage-book3d::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: -11px;
+  bottom: 13px;
+  z-index: 0;
+  width: 28px;
+  border-radius: 0 18px 18px 0;
+  background:
+    linear-gradient(90deg, #e1d7bb, #fff9e7 34%, #cfc2a2),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 8px,
+      rgba(103, 84, 58, 0.16) 8px 9px
+    );
+  background-blend-mode: normal, multiply;
+  box-shadow:
+    inset -7px 0 12px rgba(47, 51, 40, 0.16),
+    8px 10px 18px rgba(47, 51, 40, 0.12);
 }
 
 .bookReadDetailPage-cover {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   object-fit: cover;
-  border-radius: 6px;
-  background-color: var(--bg-main);
+  border: 1px solid rgba(95, 107, 54, 0.16);
+  border-radius: inherit;
+  background-color: var(--bg-card);
+  box-shadow:
+    inset 8px 0 16px rgba(255, 255, 255, 0.18),
+    inset -8px 0 18px rgba(0, 0, 0, 0.1);
 }
 
 .bookReadDetailPage-info {
   min-width: 0;
+  padding: 28px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 247, 0.64), rgba(242, 246, 232, 0.86)),
+    var(--bg-card);
+  box-shadow: var(--shadow-raised);
 }
 
 .bookReadDetailPage-title {
@@ -78,6 +149,10 @@
   grid-template-columns: 80px 1fr;
   column-gap: 16px;
   align-items: start;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 247, 0.28);
+  box-shadow: var(--shadow-soft);
 }
 
 .bookReadDetailPage-metaItem dt {
@@ -93,8 +168,11 @@
 }
 
 .bookReadDetailPage-description {
-  border-top: 1px solid var(--border-main);
-  padding-top: 24px;
+  border-top: 0;
+  padding: 22px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-input);
+  box-shadow: var(--shadow-pressed);
 }
 
 .bookReadDetailPage-description h3 {
@@ -120,36 +198,101 @@
 
 .bookReadDetailPage-button {
   border: 0;
-  border-radius: 6px;
-  background-color: var(--primary);
+  border-radius: 999px;
+  background:
+    linear-gradient(145deg, #758243, var(--primary));
   color: var(--text-white);
   padding: 8px 18px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
   min-height: 36px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-surface);
 }
 
 .bookReadDetailPage-button:hover {
-  background-color: #49501e;
+  background:
+    linear-gradient(145deg, #808e4a, var(--primary));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-raised);
+}
+
+.bookReadDetailPage-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-pressed);
 }
 
 .bookReadDetailPage-button--like {
-  background-color: rgb(35, 165, 216);
+  background:
+    linear-gradient(145deg, #78904b, #5f7f38);
 }
 
 .bookReadDetailPage-button--like:hover {
-  background-color: #963847;
+  background:
+    linear-gradient(145deg, #85a052, #67883e);
 }
 
 .bookReadDetailPage-button--secondary {
-  background-color: transparent;
+  background-color: var(--bg-card);
+  background-image: none;
   border: 1px solid var(--border-main);
   color: var(--text-main);
 }
 
 .bookReadDetailPage-button--secondary:hover {
   background-color: var(--bg-input);
+}
+
+:root[data-theme="dark"] .bookReadDetailPage-info {
+  background:
+    linear-gradient(145deg, rgba(45, 53, 36, 0.94), rgba(30, 36, 25, 0.86)),
+    var(--bg-card);
+}
+
+:root[data-theme="dark"] .bookReadDetailPage-book3d {
+  background:
+    linear-gradient(90deg, #576043 0 14px, #303927 14px 100%);
+  box-shadow:
+    24px 28px 46px rgba(0, 0, 0, 0.38),
+    8px 10px 18px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] .bookReadDetailPage-book3d::before {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.58),
+      rgba(214, 224, 168, 0.16) 68%,
+      rgba(0, 0, 0, 0.16)
+    );
+}
+
+:root[data-theme="dark"] .bookReadDetailPage-book3d::after {
+  background:
+    linear-gradient(90deg, #535b40, #39422f 34%, #22291b),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 8px,
+      rgba(214, 224, 168, 0.1) 8px 9px
+    );
+  box-shadow:
+    inset -7px 0 12px rgba(0, 0, 0, 0.24),
+    8px 10px 18px rgba(0, 0, 0, 0.24);
+}
+
+:root[data-theme="dark"] .bookReadDetailPage-cover {
+  border-color: rgba(214, 224, 168, 0.16);
+}
+
+:root[data-theme="dark"] .bookReadDetailPage {
+  background:
+    radial-gradient(circle at 90% 8%, rgba(74, 87, 54, 0.32), transparent 30%),
+    var(--bg-page);
+}
+
+:root[data-theme="dark"] .bookReadDetailPage-metaItem {
+  background-color: rgba(91, 106, 68, 0.14);
 }
 
 @media (max-width: 900px) {

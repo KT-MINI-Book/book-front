@@ -16,13 +16,15 @@
 .input-field {
   width: 100%;
   box-sizing: border-box;
-  border: 1.5px solid var(--border-input);
-  border-radius: 10px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
   background-color: var(--bg-input);
   color: var(--text-main);
   font-size: var(--font-body);
   font-weight: 600;
   outline: none;
+  box-shadow: var(--shadow-pressed);
+  transition: var(--transition-surface);
 }
 
 .input-field::placeholder {
@@ -31,7 +33,9 @@
 }
 
 .input-field:focus {
-  border-color: var(--success);
+  border-color: rgba(95, 141, 56, 0.52);
+  background-color: var(--color-surface-raised);
+  box-shadow: var(--shadow-pressed), var(--shadow-focus);
 }
 
 .input-small {

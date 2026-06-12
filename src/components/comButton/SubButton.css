@@ -1,17 +1,26 @@
 .comButton-sub {
-  background: transparent;
+  background: var(--bg-card);
   color: var(--mossy-olive);
   border: 1px solid var(--mossy-olive);
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
-  transition: background 0.15s ease, color 0.15s ease;
+  font-weight: 800;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-surface);
 }
 
 .comButton-sub:hover:not(:disabled) {
   background: var(--mossy-lime);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-raised);
+}
+
+.comButton-sub:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-pressed);
 }
 
 .comButton-sub:disabled {

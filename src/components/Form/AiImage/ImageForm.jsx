@@ -35,7 +35,14 @@ const resizeImageDataUrl = (dataUrl, targetWidth = 200, targetHeight = 230) => {
   });
 };
 
-function ImageForm({ bookData, setBookData }) {
+function ImageForm({
+  bookData,
+  setBookData,
+  onGenerated,
+  showTitle = true,
+  title = "AI 이미지 자동 생성",
+  generateButtonLabel = "이미지 생성",
+}) {
   const [apiKey, setApiKey] = useState("");
   const [selectedQuality, setSelectedQuality] = useState("medium");
   const [isLoading, setIsLoading] = useState(false);
@@ -178,6 +185,7 @@ ${bookData.content}
         ...prev,
         coverImageUrl: uploadData.secure_url,
       }));
+      onGenerated?.(uploadData.secure_url);
 
       toast.success("AI 도서 표지가 생성되었습니다!", {
         position: isMobile ? "bottom-center" : "top-right"
@@ -193,76 +201,83 @@ ${bookData.content}
 
   return (
     <div className="image-form">
-      <h2 className="image-form-title">AI 이미지 자동 생성</h2>
+      {showTitle && <h2 className="image-form-title">{title}</h2>}
 
       <div className="image-form-body">
-        <Input
-          label="API Key:"
-          type="password"
-          name="apiKey"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-          placeholder="API Key를 입력해주세요."
-        />
+        <div className="image-form-layout">
+          <div className="image-form-preview-column">
+            <p className="image-form-label">이미지 미리보기:</p>
 
-        <div className="image-form-message-row">
-          {errorMsg ? (
-            <p className="validation-error image-form-message">{errorMsg}</p>
-          ) : hasApiKey ? (
-            <p className="validation-success image-form-message">
-              API Key 형식이 확인되었습니다.
-            </p>
-          ) : (
-            <p className="image-form-message image-form-message-empty">
-              API Key 입력 후 이미지를 생성할 수 있습니다.
-            </p>
-          )}
-        </div>
-
-        <div className="image-form-quality-row">
-          <p className="image-form-label">이미지 품질:</p>
-          <RadioButton
-            selectedQuality={selectedQuality}
-            onChange={setSelectedQuality}
-          />
-        </div>
-
-        <div className="image-form-field">
-          <p className="image-form-label">이미지 미리보기:</p>
-
-          <div className="image-form-preview-box">
-            {isLoading ? (
-              <div className="image-form-loading">
-                <div className="image-form-spinner" />
-                <p>AI가 도서 표지를 생성하는 중입니다...</p>
-              </div>
-            ) : bookData.coverImageUrl ? (
-              <div className="image-form-book-image">
-                <BookImage
-                  src={bookData.coverImageUrl}
-                  alt="AI 생성 도서 표지"
-                />
-              </div>
-            ) : (
-              <div className="image-form-placeholder">
-                <p>여러분의 책 제목과 책 내용을 기반으로 생성됩니다 !</p>
-              </div>
-            )}
+            <div className="image-form-preview-box">
+              {isLoading ? (
+                <div className="image-form-loading">
+                  <div className="image-form-spinner" />
+                  <p>AI가 도서 표지를 생성하는 중입니다...</p>
+                </div>
+              ) : bookData.coverImageUrl ? (
+                <div className="image-form-book-image">
+                  <BookImage
+                    key={bookData.coverImageUrl}
+                    src={bookData.coverImageUrl}
+                    alt="AI 생성 도서 표지"
+                  />
+                </div>
+              ) : (
+                <div className="image-form-placeholder">
+                  <p>여러분의 책 제목과 책 내용을 기반으로 생성됩니다 !</p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        <div className="image-form-footer">
-          <span className="image-form-notice">
-            미 생성 시 기본 이미지로 대체됩니다!
-          </span>
+          <div className="image-form-controls-column">
+            <Input
+              label="API Key:"
+              type="password"
+              name="apiKey"
+              value={apiKey}
+              onChange={(e) => setApiKey(e.target.value)}
+              placeholder="API Key를 입력해주세요."
+            />
 
-          <MainButton
-            type="button"
-            onClick={handleGenerateImage}
-            disabled={isLoading}
-          >
-            {isLoading ? "생성 중..." : "이미지 생성"}
-          </MainButton>
+            <div className="image-form-message-row">
+              {errorMsg ? (
+                <p className="validation-error image-form-message">
+                  {errorMsg}
+                </p>
+              ) : hasApiKey ? (
+                <p className="validation-success image-form-message">
+                  API Key 형식이 확인되었습니다.
+                </p>
+              ) : (
+                <p className="image-form-message image-form-message-empty">
+                  API Key 입력 후 이미지를 생성할 수 있습니다.
+                </p>
+              )}
+            </div>
+
+            <div className="image-form-quality-row">
+              <p className="image-form-label">이미지 품질:</p>
+              <RadioButton
+                selectedQuality={selectedQuality}
+                onChange={setSelectedQuality}
+              />
+            </div>
+
+            <div className="image-form-footer">
+              <span className="image-form-notice">
+                미 생성 시 기본 이미지로 대체됩니다!
+              </span>
+
+              <MainButton
+                type="button"
+                onClick={handleGenerateImage}
+                disabled={isLoading}
+              >
+                {isLoading ? "생성 중..." : generateButtonLabel}
+              </MainButton>
+            </div>
+          </div>
         </div>
       </div>
     </div>

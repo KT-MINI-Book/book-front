@@ -1,9 +1,11 @@
 .reviewCard {
   border: 1px solid var(--border-main);
-  border-radius: 8px;
-  background-color: var(--bg-input);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(145deg, var(--color-surface-raised), var(--bg-card));
   padding: 20px 24px;
   box-sizing: border-box;
+  box-shadow: var(--shadow-raised);
 }
 
 .reviewCard-header {

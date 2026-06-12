@@ -14,7 +14,6 @@ import { toast } from "react-hot-toast";
 
 import Header from "../components/Header";
 import BookForm from "../components/Form/Book/BookForm";
-import ImageForm from "../components/Form/AiImage/ImageForm";
 import "./BookDetailPage.css";
 
 const INITIAL_BOOK_DATA = {
@@ -459,8 +458,9 @@ function BookDetailPage({
 
         {!pageLoading && (
           <>
-            <section className="bookDetailPage-column">
+            <section className="bookDetailPage-column bookDetailPage-column--flow">
               <BookForm
+                key={isCreate ? "create-book-form" : `edit-book-form-${bookId}`}
                 isCreate={isCreate}
                 bookId={bookId}
                 bookData={bookData}
@@ -471,10 +471,6 @@ function BookDetailPage({
                 genreFeedback={genreFeedback}
                 onClearGenreFeedback={() => setGenreFeedback(null)}
               />
-            </section>
-
-            <section className="bookDetailPage-column">
-              <ImageForm bookData={bookData} setBookData={setBookData} />
             </section>
           </>
         )}

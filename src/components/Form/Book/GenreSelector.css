@@ -8,27 +8,34 @@
   justify-content: center;
   gap: 5px;
 
-  border: 1px solid var(--primary, #65702a);
+  border: 1px solid var(--border-main);
   border-radius: 999px;
-  background: transparent;
+  background: var(--bg-card);
   color: var(--primary, #65702a);
 
   font-size: 12px;
   font-weight: 800;
   line-height: 1;
   white-space: nowrap;
+  box-sizing: border-box;
 
   cursor: pointer;
-  transition: 0.15s ease;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-surface);
 }
 
 .genre-select-button:hover {
-  background: rgba(101, 112, 42, 0.08);
+  background: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-raised);
 }
 
 .genre-select-button.selected {
   background: var(--primary, #65702a);
   color: var(--text-white, #ffffff);
+  box-shadow:
+    inset 4px 4px 8px rgba(45, 55, 24, 0.26),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.08);
 }
 
 .genre-select-arrow {

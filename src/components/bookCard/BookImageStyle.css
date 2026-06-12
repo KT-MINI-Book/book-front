@@ -5,10 +5,12 @@
   height: 230px;
 
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   overflow: hidden;
 
-  background-color: var(--bg-card);
+  background:
+    linear-gradient(145deg, var(--bg-card), var(--color-surface-muted));
+  box-shadow: var(--shadow-pressed);
 
   display: flex;
   align-items: center;

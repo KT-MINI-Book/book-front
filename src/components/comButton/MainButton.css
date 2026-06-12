@@ -1,17 +1,30 @@
 .comButton-main {
-  background: var(--mossy-olive);
+  background: linear-gradient(145deg, #758243, var(--mossy-olive));
   color: white;
   border: none;
   padding: 14px 34px;
-  border-radius: 8px;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
-  transition: background 0.15s ease;
+  font-weight: 800;
+  box-sizing: border-box;
+  box-shadow:
+    8px 8px 16px rgba(83, 96, 48, 0.24),
+    -7px -7px 16px rgba(255, 255, 248, 0.62);
+  transition: var(--transition-surface);
 }
 
 .comButton-main:hover:not(:disabled) {
-  background: var(--mossy-forest);
+  background: linear-gradient(145deg, #808e4a, var(--mossy-olive));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.comButton-main:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow:
+    inset 5px 5px 10px rgba(45, 55, 24, 0.32),
+    inset -5px -5px 10px rgba(255, 255, 255, 0.1);
 }
 
 .comButton-main:disabled {

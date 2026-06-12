@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import "./Header.css";
 import ThemeToggle from "./ThemeToggle/ThemeToggle";
 
@@ -31,12 +31,23 @@ function Header({
   onToggleTheme,
 }) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { showList, showCreate } = getNavVisibility(pathname);
   const headerClass = isMain ? "header header--main" : "header";
 
   return (
     <header className={headerClass}>
-      <h1 className="header-title">{title}</h1>
+      <h1 className="header-title">
+        <button
+          type="button"
+          className="header-brand"
+          onClick={() => navigate("/")}
+          aria-label={`${title} 홈으로 이동`}
+        >
+          <img className="header-logo" src="/logo.svg" alt="" />
+          <span>{title}</span>
+        </button>
+      </h1>
 
       <div className="header-content">
         {!isMain && (showList || showCreate) && (

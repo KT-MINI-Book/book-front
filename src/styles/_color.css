@@ -1,64 +1,141 @@
 /* Mossy Hollow — Color Tokens */
 
 :root {
+  /* Neumorphism Design Tokens */
+  --color-bg: #eef3dd;
+  --color-bg-soft: #f7f8ee;
+  --color-surface: #f2f6e8;
+  --color-surface-raised: #f8faef;
+  --color-surface-muted: #dfe8c8;
+  --color-primary: #65723a;
+  --color-primary-dark: #3f4828;
+  --color-primary-soft: #d7e2a0;
+  --color-text: #333a22;
+  --color-muted: #778060;
+  --color-border-soft: rgba(95, 107, 54, 0.18);
+  --color-highlight: rgba(255, 255, 247, 0.92);
+  --shadow-raised:
+    10px 10px 22px rgba(107, 121, 70, 0.2),
+    -10px -10px 22px rgba(255, 255, 248, 0.84);
+  --shadow-soft:
+    6px 6px 14px rgba(107, 121, 70, 0.16),
+    -6px -6px 14px rgba(255, 255, 248, 0.72);
+  --shadow-hover:
+    14px 14px 28px rgba(107, 121, 70, 0.22),
+    -12px -12px 26px rgba(255, 255, 248, 0.9);
+  --shadow-pressed:
+    inset 6px 6px 12px rgba(107, 121, 70, 0.2),
+    inset -6px -6px 12px rgba(255, 255, 248, 0.82);
+  --shadow-focus:
+    0 0 0 3px rgba(101, 114, 58, 0.18);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --transition-surface:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease,
+    color 0.18s ease;
+
   /* Validation */
   --error: #d9822b;
-  --success: #b8d943;
+  --success: #5f8d38;
 
   /* Main */
-  --primary: #636b2f;
-  --secondary: #d4de95;
+  --primary: var(--color-primary);
+  --secondary: var(--color-primary-soft);
 
   /* Text */
-  --text-main: #3d4127;
+  --text-main: var(--color-text);
   --text-white: #ffffff;
-  --text-placeholder: #bac095;
+  --text-placeholder: var(--color-muted);
 
   /* Background */
-  --bg-page: #fafaf3;
-  --bg-card: #f4f6e8;
-  --bg-input: #ffffff;
-  --bg-header: #3d4127;
+  --bg-page: var(--color-bg);
+  --bg-card: var(--color-surface);
+  --bg-input: var(--color-surface-raised);
+  --bg-header: var(--color-primary-dark);
 
   /* Border */
-  --border-main: #bac095;
-  --border-input: #bac095;
-  --border-card: #bac095;
-  --border-image: #bac095;
+  --border-main: var(--color-border-soft);
+  --border-input: var(--color-border-soft);
+  --border-card: var(--color-border-soft);
+  --border-image: var(--color-border-soft);
 
   /* Badge */
-  --badge-bg: #d4de95;
-  --badge-text: #3d4127;
+  --badge-bg: var(--color-primary-soft);
+  --badge-text: var(--color-primary-dark);
+
+  /* Mossy aliases */
+  --mossy-olive: var(--color-primary);
+  --mossy-sage: #aab58b;
+  --mossy-lime: var(--color-primary-soft);
+  --mossy-forest: var(--color-primary-dark);
 }
 
 /* 다크 모드 색상 변수 */
 :root[data-theme="dark"] {
+  /* Neumorphism Design Tokens */
+  --color-bg: #1e2419;
+  --color-bg-soft: #252c1f;
+  --color-surface: #283020;
+  --color-surface-raised: #2d3524;
+  --color-surface-muted: #3b472f;
+  --color-primary: #aebd78;
+  --color-primary-dark: #d6e0a8;
+  --color-primary-soft: #4a5736;
+  --color-text: #e6ead8;
+  --color-muted: #b0b89b;
+  --color-border-soft: rgba(214, 224, 168, 0.16);
+  --color-highlight: rgba(91, 106, 68, 0.28);
+  --shadow-raised:
+    10px 10px 22px rgba(0, 0, 0, 0.38),
+    -8px -8px 20px rgba(86, 103, 62, 0.22);
+  --shadow-soft:
+    6px 6px 14px rgba(0, 0, 0, 0.32),
+    -5px -5px 13px rgba(86, 103, 62, 0.18);
+  --shadow-hover:
+    14px 14px 28px rgba(0, 0, 0, 0.42),
+    -9px -9px 24px rgba(86, 103, 62, 0.25);
+  --shadow-pressed:
+    inset 6px 6px 12px rgba(0, 0, 0, 0.34),
+    inset -6px -6px 12px rgba(86, 103, 62, 0.2);
+  --shadow-focus:
+    0 0 0 3px rgba(174, 189, 120, 0.24);
+
   /* Validation */
   --error: #ff8a50;
   --success: #90ee90;
 
   /* Main */
-  --primary: #a4b26f;
-  --secondary: #566339;
+  --primary: var(--color-primary);
+  --secondary: var(--color-primary-soft);
 
   /* Text */
-  --text-main: #e0e0e0;
+  --text-main: var(--color-text);
   --text-white: #ffffff;
-  --text-placeholder: #888888;
+  --text-placeholder: var(--color-muted);
 
   /* Background */
-  --bg-page: #1a1a1a;
-  --bg-card: #2a2a2a;
-  --bg-input: #333333;
-  --bg-header: #1a1a1a;
+  --bg-page: var(--color-bg);
+  --bg-card: var(--color-surface);
+  --bg-input: var(--color-surface-raised);
+  --bg-header: #171d13;
 
   /* Border */
-  --border-main: #555555;
-  --border-input: #555555;
-  --border-card: #555555;
-  --border-image: #555555;
+  --border-main: var(--color-border-soft);
+  --border-input: var(--color-border-soft);
+  --border-card: var(--color-border-soft);
+  --border-image: var(--color-border-soft);
 
   /* Badge */
-  --badge-bg: #5a6b2f;
-  --badge-text: #e0e0e0;
+  --badge-bg: var(--color-primary-soft);
+  --badge-text: var(--color-text);
+
+  /* Mossy aliases */
+  --mossy-olive: var(--color-primary);
+  --mossy-sage: #839472;
+  --mossy-lime: rgba(185, 196, 131, 0.19);
+  --mossy-forest: #d6e0a8;
 }

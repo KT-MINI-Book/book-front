@@ -42,6 +42,7 @@
   border-radius: 999px;
   font-size: 13px;
   font-weight: 700;
+  box-shadow: var(--shadow-soft);
 }
 
 .reviewSection-rating {
@@ -52,19 +53,27 @@
 
 .reviewSection-writeBtn {
   padding: 8px 16px;
-  background-color: #59664c;
+  background:
+    linear-gradient(145deg, #6f7f43, var(--primary));
   color: #ffffff;
   border: none;
-  border-radius: 6px;
+  border-radius: 999px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 800;
   cursor: pointer;
   margin: 0;
-  transition: background-color 0.2s ease;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-surface);
 }
 
 .reviewSection-writeBtn:hover {
-  background-color: #444f3a;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-raised);
+}
+
+.reviewSection-writeBtn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-pressed);
 }
 
 .reviewSection-message {
@@ -104,7 +113,10 @@
   color: var(--text-placeholder);
   font-size: var(--font-small);
   line-height: 1.6;
-  padding: 16px 0;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-pressed);
 }
 
 /* BookReadDetailPage와 동일 기준 (900px) */
