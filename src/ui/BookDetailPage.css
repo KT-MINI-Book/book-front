@@ -10,29 +10,19 @@
 .bookDetailPage-main {
   flex: 1;
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 80px;
+  display: block;
 
   width: 100%;
-  max-width: 1064px;
+  max-width: 980px;
   margin: 0 auto;
-  padding: 32px 0 56px;
+  padding: 34px 24px 64px;
   box-sizing: border-box;
-
-  align-items: start;
 }
 
 .bookDetailPage-column {
   width: 100%;
   min-width: 0;
-  padding: 28px;
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(145deg, rgba(255, 255, 247, 0.64), rgba(242, 246, 232, 0.86)),
-    var(--bg-card);
-  box-shadow: var(--shadow-raised);
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -102,12 +92,6 @@
   box-shadow: var(--shadow-raised);
 }
 
-:root[data-theme="dark"] .bookDetailPage-column {
-  background:
-    linear-gradient(145deg, rgba(45, 53, 36, 0.94), rgba(30, 36, 25, 0.86)),
-    var(--bg-card);
-}
-
 :root[data-theme="dark"] .bookDetailPage {
   background:
     radial-gradient(circle at 88% 6%, rgba(74, 87, 54, 0.32), transparent 30%),
@@ -116,9 +100,7 @@
 
 @media (max-width: 1023px) {
   .bookDetailPage-main {
-    grid-template-columns: 1fr;
-    row-gap: 48px;
-    max-width: 520px;
+    max-width: 760px;
     padding: 32px 24px 56px;
   }
 }

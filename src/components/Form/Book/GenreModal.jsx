@@ -273,7 +273,7 @@ function GenreModal({
     if (loadError) {
       return (
         <div className="genre-modal-state genre-modal-state-error" role="alert">
-          <strong>장르 목록 조회 실패</strong>
+          {/* <strong>장르 목록 조회 실패</strong> */}
           <p>{loadError}</p>
           <button
             type="button"
