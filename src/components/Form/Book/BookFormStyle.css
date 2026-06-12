@@ -1,6 +1,8 @@
 .book-form {
+  --book-detail-preview-height: 230px;
+
   width: 100%;
-  min-height: 462px;
+  min-height: 536px;
 
   display: flex;
   flex-direction: column;
@@ -24,6 +26,7 @@
 
 .book-form-body {
   flex: 1;
+  min-height: 0;
 
   display: flex;
   flex-direction: column;
@@ -140,9 +143,25 @@
   border-color: var(--primary, #65702a);
 }
 
+.book-form .input-large {
+  height: var(--book-detail-preview-height);
+}
+
+.book-form-content-field {
+  margin-top: 0;
+}
+
+.book-form--create .book-form-content-field {
+  margin-top: 34px;
+}
+
+.book-form-content-field .input-box {
+  gap: 6px;
+}
+
 .book-form-actions {
   margin-top: auto;
-  padding-top: 20px;
+  transform: translateY(8px);
 
   display: flex;
   justify-content: flex-end;

@@ -44,7 +44,7 @@ function BookForm({
   };
 
   return (
-    <div className="book-form">
+    <div className={`book-form ${isCreate ? "book-form--create" : "book-form--edit"}`}>
       <h2 className="book-form-title">
         {isCreate ? "새 도서를 등록해주세요 !" : "도서를 수정해주세요 !"}
       </h2>
@@ -98,14 +98,16 @@ function BookForm({
           placeholder="여러분의 저자를 입력해주세요."
         />
 
-        <Input
-          label="내용:"
-          name="content"
-          variant="large"
-          value={bookData.content}
-          onChange={handleChange}
-          placeholder="여러분의 책 내용을 입력해주세요."
-        />
+        <div className="book-form-content-field">
+          <Input
+            label="내용:"
+            name="content"
+            variant="large"
+            value={bookData.content}
+            onChange={handleChange}
+            placeholder="여러분의 책 내용을 입력해주세요."
+          />
+        </div>
 
         <div className="book-form-actions">
           {!isCreate && (
