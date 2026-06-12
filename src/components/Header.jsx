@@ -24,7 +24,7 @@ function getNavVisibility(pathname) {
 
 function Header({
   isMain = false,
-  title = "걷기가 서",
+  title = "걷기가 서재",
   onGoList,
   onGoCreate,
   isDarkMode = false,
